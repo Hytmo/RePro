@@ -66,3 +66,8 @@ export async function getCompanyReviews(companyId: string) {
     .order('created_at', {ascending: false});
   return data ?? [];
 }
+
+export async function getCompanySummary(companyId: string) {
+  const {data} = await db().from('company_summaries').select('*').eq('company_id', companyId).maybeSingle();
+  return data;
+}

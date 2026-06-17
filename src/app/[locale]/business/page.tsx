@@ -2,6 +2,7 @@ import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
 import {createClient} from '@/lib/supabase/server';
 import EnquiryRow from '@/components/EnquiryRow';
+import UpgradeButton from '@/components/UpgradeButton';
 
 const STATUS_STYLES: Record<string, string> = {
   verified: 'bg-brand-50 text-brand-700',
@@ -21,7 +22,7 @@ export default async function BusinessPage({params}: {params: Promise<{locale: s
   let mine: any[] = [];
   let leads: any[] = [];
   if (user) {
-    const {data} = await supabase.from('companies').select('id,name,slug,status').or(`owner_id.eq.${user.id},created_by.eq.${user.id}`).order('created_at', {ascending: false});
+    const {data} = await supabase.from('companies').select('id,name,slug,status,is_badged').or(`owner_id.eq.${user.id},created_by.eq.${user.id}`).order('created_at', {ascending: false});
     mine = data ?? [];
     const ids = mine.map((c) => c.id);
     if (ids.length) {
@@ -41,13 +42,17 @@ export default async function BusinessPage({params}: {params: Promise<{locale: s
           <h2 className="mb-3 text-lg font-semibold text-ink">{t('yourBusinesses')}</h2>
           <div className="divide-y divide-border overflow-hidden rounded-2xl border border-border bg-background">
             {mine.map((c) => (
-              <div key={c.id} className="flex items-center justify-between gap-4 px-5 py-3">
+              <div key={c.id} className="flex flex-wrap items-center justify-between gap-3 px-5 py-3">
                 {c.status === 'verified' ? (
                   <Link href={`/company/${c.slug}`} className="font-medium text-ink hover:text-brand-700">{c.name}</Link>
                 ) : (
                   <span className="font-medium text-ink">{c.name}</span>
                 )}
-                <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${STATUS_STYLES[c.status] ?? ''}`}>{t(`status.${c.status}`)}</span>
+                <div className="flex items-center gap-3">
+                  {c.status === 'verified' && !c.is_badged && <UpgradeButton companyId={c.id} locale={locale} label={t('upgrade')} unavailable={t('billingUnavailable')} />}
+                  {c.is_badged && <span className="text-xs font-medium text-brand-700">{t('badged')}</span>}
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${STATUS_STYLES[c.status] ?? ''}`}>{t(`status.${c.status}`)}</span>
+                </div>
               </div>
             ))}
           </div>

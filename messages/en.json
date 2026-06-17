@@ -164,7 +164,10 @@
     "removeReview": "Remove review",
     "remove": "Remove",
     "restore": "Restore",
-    "nothingHere": "Nothing here right now."
+    "nothingHere": "Nothing here right now.",
+    "aiTools": "AI summaries",
+    "generate": "Generate now",
+    "generating": "Generating…"
   },
   "business": {
     "title": "For businesses",
@@ -195,7 +198,10 @@
     "fWebsite": "Website",
     "fEmail": "Email",
     "fSubmit": "Submit for review",
-    "fSubmitting": "Submitting…"
+    "fSubmitting": "Submitting…",
+    "upgrade": "Get verified badge — €19.99/mo",
+    "billingUnavailable": "Billing isn’t set up yet.",
+    "badged": "Verified badge active"
   },
   "leads": {
     "getInTouch": "Get in touch",
@@ -244,5 +250,12 @@
     "verified": "Verified badge",
     "pickPrompt": "Pick at least two businesses from search results to compare them side by side.",
     "backToSearch": "Go to search"
+  },
+  "ai": {
+    "title": "What customers say",
+    "disclaimer": "AI-generated summary based on customer reviews.",
+    "loves": "What customers love",
+    "complaints": "Common complaints",
+    "placeholder": "A short AI summary of what customers love and common complaints will appear here once there are enough reviews."
   }
 }

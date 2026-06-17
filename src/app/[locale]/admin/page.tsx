@@ -3,6 +3,7 @@ import {redirect} from 'next/navigation';
 import {Link} from '@/i18n/navigation';
 import {createClient} from '@/lib/supabase/server';
 import {CompanyActions, ClaimActions, ReviewActions, ReportActions} from '@/components/AdminActions';
+import AdminGenerateSummaries from '@/components/AdminGenerateSummaries';
 
 export const metadata = {title: 'Admin'};
 
@@ -39,6 +40,11 @@ export default async function AdminPage({params}: {params: Promise<{locale: stri
         <Stat label={t('pendingCompanies')} value={pendingList.length} />
         <Stat label={t('pendingClaims')} value={claimList.length} />
         <Stat label={t('openReports')} value={reportList.length} />
+      </div>
+
+      <div className="mt-6 flex items-center justify-between gap-3 rounded-xl border border-border bg-background px-5 py-3">
+        <span className="text-sm font-medium text-ink">{t('aiTools')}</span>
+        <AdminGenerateSummaries label={t('generate')} busyLabel={t('generating')} />
       </div>
 
       <Section title={t('verificationQueue')}>

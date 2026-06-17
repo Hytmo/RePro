@@ -57,10 +57,13 @@ export default function LeadForm({
       return;
     }
     setBusy(true);
-    const {error} = await supabase.from('leads').insert({company_id: companyId, user_id: userId, type, message, contact_email: email || null, consent});
+    const {data, error} = await supabase.from('leads').insert({company_id: companyId, user_id: userId, type, message, contact_email: email || null, consent}).select('id').single();
     setBusy(false);
     if (error) setError(error.message);
-    else setOk(true);
+    else {
+      setOk(true);
+      if (data?.id) supabase.functions.invoke('notify-lead', {body: {lead_id: data.id}}).catch(() => {});
+    }
   }
 
   const input = 'w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-500';

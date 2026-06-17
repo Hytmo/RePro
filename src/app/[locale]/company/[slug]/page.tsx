@@ -1,7 +1,7 @@
 import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {notFound} from 'next/navigation';
 import {Link} from '@/i18n/navigation';
-import {getCompanyBySlug, getCompanyReviews} from '@/lib/queries';
+import {getCompanyBySlug, getCompanyReviews, getCompanySummary} from '@/lib/queries';
 import {createClient} from '@/lib/supabase/server';
 import {localizedName, initials, formatResponseTime} from '@/lib/format';
 import StarRating from '@/components/StarRating';
@@ -29,7 +29,7 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
   setRequestLocale(locale);
   const company = await getCompanyBySlug(slug);
   if (!company) notFound();
-  const reviews = await getCompanyReviews(company.id);
+  const [reviews, summary] = await Promise.all([getCompanyReviews(company.id), getCompanySummary(company.id)]);
 
   const supabase = await createClient();
   const {data: {user}} = await supabase.auth.getUser();
@@ -52,6 +52,7 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
   const tr = await getTranslations('reviews');
   const tcw = await getTranslations('compose');
   const tl = await getTranslations('leads');
+  const tai = await getTranslations('ai');
 
   const cats = (company.company_categories ?? []).map((cc: any) => cc.categories).filter(Boolean);
   const dateFmt = new Intl.DateTimeFormat(locale, {year: 'numeric', month: 'short', day: 'numeric'});
@@ -59,9 +60,24 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
   const otherReviews = reviews.filter((r: any) => r.author_id !== user?.id);
   const respLabels = {respond: tcw('respond'), edit: tcw('editResponse'), save: tcw('saveResponse'), placeholder: tcw('responsePlaceholder')};
   const responseTime = formatResponseTime(company.response_time_hours == null ? null : Number(company.response_time_hours));
+  const loves: string[] = (summary?.loves as string[]) ?? [];
+  const complaints: string[] = (summary?.complaints as string[]) ?? [];
+  const hasSummary = loves.length > 0 || complaints.length > 0;
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: company.name,
+    description: company.description ?? undefined,
+    telephone: company.phone ?? undefined,
+    url: company.website ?? undefined,
+    address: company.address ? {'@type': 'PostalAddress', streetAddress: company.address, addressLocality: company.city, postalCode: company.postal_code, addressCountry: company.country} : undefined,
+    aggregateRating: company.rating_count > 0 ? {'@type': 'AggregateRating', ratingValue: Number(company.rating_avg), reviewCount: company.rating_count} : undefined
+  };
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}} />
       <Link href="/search" className="text-sm text-brand-700 hover:underline">← {t('backToSearch')}</Link>
 
       <header className="mt-4 flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-start">
@@ -91,6 +107,28 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
               <p className="mt-2 leading-relaxed text-ink-soft">{company.description}</p>
             </section>
           )}
+
+          {hasSummary ? (
+            <section className="mb-8 rounded-2xl border border-border bg-background p-6">
+              <h2 className="text-lg font-semibold text-ink">{tai('title')}</h2>
+              <p className="mb-4 text-xs text-muted">{tai('disclaimer')}</p>
+              <div className="grid gap-6 sm:grid-cols-2">
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold text-brand-700">{tai('loves')}</h3>
+                  <ul className="space-y-1.5 text-sm text-ink-soft">{loves.map((x, i) => (<li key={i} className="flex gap-2"><i className="ti ti-plus mt-0.5 text-brand-500" aria-hidden="true" />{x}</li>))}</ul>
+                </div>
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold text-amber-700">{tai('complaints')}</h3>
+                  <ul className="space-y-1.5 text-sm text-ink-soft">{complaints.map((x, i) => (<li key={i} className="flex gap-2"><i className="ti ti-minus mt-0.5 text-amber-600" aria-hidden="true" />{x}</li>))}</ul>
+                </div>
+              </div>
+            </section>
+          ) : company.rating_count >= 3 ? (
+            <section className="mb-8 rounded-2xl border border-dashed border-border bg-surface p-6">
+              <h2 className="text-lg font-semibold text-ink">{tai('title')}</h2>
+              <p className="mt-1 text-sm text-muted">{tai('placeholder')}</p>
+            </section>
+          ) : null}
 
           {company.rating_count > 0 && (
             <section className="mb-8 rounded-2xl border border-border bg-background p-6">
