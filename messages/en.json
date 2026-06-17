@@ -1,0 +1,43 @@
+{
+  "common": {
+    "comingSoonBadge": "Coming soon",
+    "comingSoonBody": "This part of RePro is on its way. We're building it in the open, milestone by milestone."
+  },
+  "meta": {
+    "title": "RePro — Honest reviews of Luxembourg businesses",
+    "description": "Find and compare trusted local service providers in Luxembourg. Real, verified reviews from real customers."
+  },
+  "nav": {
+    "categories": "Categories",
+    "forBusiness": "For businesses",
+    "signIn": "Sign in",
+    "search": "Search"
+  },
+  "home": {
+    "heroTitle": "Find Luxembourg businesses you can trust",
+    "heroSubtitle": "Real, verified reviews of local service providers — rated on what matters: quality, value, communication and more.",
+    "searchPlaceholder": "Search a service or company…",
+    "searchLocationPlaceholder": "Location",
+    "searchButton": "Search",
+    "popularCategories": "Popular categories",
+    "comingSoon": "We're just getting started — search and full company profiles arrive shortly.",
+    "valueProps": {
+      "verifiedTitle": "Verified reviews",
+      "verifiedText": "Account checks, moderation and anti-fake measures. Trust is the product.",
+      "multiTitle": "Multi-criteria ratings",
+      "multiText": "Compare on quality, value, communication and punctuality — not just one star.",
+      "transparentTitle": "Transparent ranking",
+      "transparentText": "No pay-to-rank. Paying buys a badge and features, never a higher rating."
+    }
+  },
+  "footer": {
+    "tagline": "Honest reviews of Luxembourg businesses.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "reviewPolicy": "Review policy",
+    "rights": "All rights reserved."
+  }
+}

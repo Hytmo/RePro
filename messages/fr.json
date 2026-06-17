@@ -1,0 +1,43 @@
+{
+  "common": {
+    "comingSoonBadge": "Bientôt disponible",
+    "comingSoonBody": "Cette partie de RePro arrive bientôt. Nous la construisons étape par étape, en toute transparence."
+  },
+  "meta": {
+    "title": "RePro — Avis honnêtes sur les entreprises luxembourgeoises",
+    "description": "Trouvez et comparez des prestataires de services locaux de confiance au Luxembourg. De vrais avis vérifiés de vrais clients."
+  },
+  "nav": {
+    "categories": "Catégories",
+    "forBusiness": "Pour les entreprises",
+    "signIn": "Se connecter",
+    "search": "Rechercher"
+  },
+  "home": {
+    "heroTitle": "Trouvez des entreprises luxembourgeoises de confiance",
+    "heroSubtitle": "De vrais avis vérifiés sur les prestataires locaux — évalués sur ce qui compte : qualité, rapport qualité-prix, communication et plus encore.",
+    "searchPlaceholder": "Rechercher un service ou une entreprise…",
+    "searchLocationPlaceholder": "Localité",
+    "searchButton": "Rechercher",
+    "popularCategories": "Catégories populaires",
+    "comingSoon": "Nous débutons à peine — la recherche et les profils complets arrivent bientôt.",
+    "valueProps": {
+      "verifiedTitle": "Avis vérifiés",
+      "verifiedText": "Vérification des comptes, modération et mesures anti-faux avis. La confiance est notre produit.",
+      "multiTitle": "Notes multicritères",
+      "multiText": "Comparez sur la qualité, le rapport qualité-prix, la communication et la ponctualité — pas une seule étoile.",
+      "transparentTitle": "Classement transparent",
+      "transparentText": "Pas de classement payant. Payer offre un badge et des fonctionnalités, jamais une meilleure note."
+    }
+  },
+  "footer": {
+    "tagline": "Avis honnêtes sur les entreprises luxembourgeoises.",
+    "product": "Produit",
+    "company": "Entreprise",
+    "legal": "Mentions légales",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "reviewPolicy": "Politique d'avis",
+    "rights": "Tous droits réservés."
+  }
+}

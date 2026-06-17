@@ -1,0 +1,43 @@
+{
+  "common": {
+    "comingSoonBadge": "Demnächst",
+    "comingSoonBody": "Dieser Bereich von RePro ist in Arbeit. Wir bauen Schritt für Schritt — offen und transparent."
+  },
+  "meta": {
+    "title": "RePro — Ehrliche Bewertungen von Luxemburger Unternehmen",
+    "description": "Finden und vergleichen Sie vertrauenswürdige lokale Dienstleister in Luxemburg. Echte, verifizierte Bewertungen von echten Kunden."
+  },
+  "nav": {
+    "categories": "Kategorien",
+    "forBusiness": "Für Unternehmen",
+    "signIn": "Anmelden",
+    "search": "Suchen"
+  },
+  "home": {
+    "heroTitle": "Finden Sie Luxemburger Unternehmen, denen Sie vertrauen können",
+    "heroSubtitle": "Echte, verifizierte Bewertungen lokaler Dienstleister — bewertet nach dem, worauf es ankommt: Qualität, Preis-Leistung, Kommunikation und mehr.",
+    "searchPlaceholder": "Dienstleistung oder Unternehmen suchen…",
+    "searchLocationPlaceholder": "Ort",
+    "searchButton": "Suchen",
+    "popularCategories": "Beliebte Kategorien",
+    "comingSoon": "Wir fangen gerade erst an — Suche und vollständige Unternehmensprofile folgen in Kürze.",
+    "valueProps": {
+      "verifiedTitle": "Verifizierte Bewertungen",
+      "verifiedText": "Kontoprüfungen, Moderation und Maßnahmen gegen Fake-Bewertungen. Vertrauen ist das Produkt.",
+      "multiTitle": "Bewertung nach mehreren Kriterien",
+      "multiText": "Vergleichen Sie nach Qualität, Preis-Leistung, Kommunikation und Pünktlichkeit — nicht nur ein Stern.",
+      "transparentTitle": "Transparentes Ranking",
+      "transparentText": "Kein Pay-to-Rank. Bezahlen bringt ein Abzeichen und Funktionen, niemals eine bessere Bewertung."
+    }
+  },
+  "footer": {
+    "tagline": "Ehrliche Bewertungen von Luxemburger Unternehmen.",
+    "product": "Produkt",
+    "company": "Unternehmen",
+    "legal": "Rechtliches",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "reviewPolicy": "Bewertungsrichtlinie",
+    "rights": "Alle Rechte vorbehalten."
+  }
+}

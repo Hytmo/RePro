@@ -1,0 +1,43 @@
+{
+  "common": {
+    "comingSoonBadge": "Geschwënn",
+    "comingSoonBody": "Dësen Deel vu RePro ass am Kommen. Mir bauen et Schrëtt fir Schrëtt op — oppen an transparent."
+  },
+  "meta": {
+    "title": "RePro — Éierlech Bewäertunge vu Lëtzebuerger Betriber",
+    "description": "Fann a vergläich vertrauenswürdeg lokal Déngschtleeschter zu Lëtzebuerg. Richteg, verifizéiert Bewäertunge vu richtege Clienten."
+  },
+  "nav": {
+    "categories": "Kategorien",
+    "forBusiness": "Fir Betriber",
+    "signIn": "Umellen",
+    "search": "Sichen"
+  },
+  "home": {
+    "heroTitle": "Fann Lëtzebuerger Betriber, deenen s du vertraue kanns",
+    "heroSubtitle": "Richteg, verifizéiert Bewäertunge vu lokalen Déngschtleeschter — bewäert no deem wat zielt: Qualitéit, Präis-Leeschtung, Kommunikatioun a méi.",
+    "searchPlaceholder": "No engem Service oder Betrib sichen…",
+    "searchLocationPlaceholder": "Uertschaft",
+    "searchButton": "Sichen",
+    "popularCategories": "Beléifte Kategorien",
+    "comingSoon": "Mir fänken eréischt un — Sich a komplett Profiler kommen geschwënn.",
+    "valueProps": {
+      "verifiedTitle": "Verifizéiert Bewäertungen",
+      "verifiedText": "Kontosiwwerpréiwung, Moderatioun a Mesuren géint falsch Bewäertungen. Vertraue ass d'Produkt.",
+      "multiTitle": "Bewäertung no méi Kritären",
+      "multiText": "Vergläich no Qualitéit, Präis-Leeschtung, Kommunikatioun a Pénktlechkeet — net nëmmen ee Stär.",
+      "transparentTitle": "Transparent Klassement",
+      "transparentText": "Kee Bezuele fir besser ze ranken. Bezuele bréngt e Badge a Featuren, ni eng besser Bewäertung."
+    }
+  },
+  "footer": {
+    "tagline": "Éierlech Bewäertunge vu Lëtzebuerger Betriber.",
+    "product": "Produit",
+    "company": "Entreprise",
+    "legal": "Legal",
+    "privacy": "Dateschutz",
+    "terms": "Konditiounen",
+    "reviewPolicy": "Bewäertungsrichtlinn",
+    "rights": "All Rechter virbehalen."
+  }
+}
