@@ -3,7 +3,7 @@ import {notFound} from 'next/navigation';
 import {Link} from '@/i18n/navigation';
 import {getCompanyBySlug, getCompanyReviews} from '@/lib/queries';
 import {createClient} from '@/lib/supabase/server';
-import {localizedName, initials} from '@/lib/format';
+import {localizedName, initials, formatResponseTime} from '@/lib/format';
 import StarRating from '@/components/StarRating';
 import RatingBars from '@/components/RatingBars';
 import VerifiedBadge from '@/components/VerifiedBadge';
@@ -13,6 +13,7 @@ import HelpfulButton from '@/components/HelpfulButton';
 import ReportButton from '@/components/ReportButton';
 import ClaimButton from '@/components/ClaimButton';
 import ResponseComposer from '@/components/ResponseComposer';
+import LeadForm from '@/components/LeadForm';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string; slug: string}>}) {
   const {slug} = await params;
@@ -50,21 +51,21 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
   const t = await getTranslations('company');
   const tr = await getTranslations('reviews');
   const tcw = await getTranslations('compose');
+  const tl = await getTranslations('leads');
 
   const cats = (company.company_categories ?? []).map((cc: any) => cc.categories).filter(Boolean);
   const dateFmt = new Intl.DateTimeFormat(locale, {year: 'numeric', month: 'short', day: 'numeric'});
   const hours = company.opening_hours as Record<string, string> | null;
   const otherReviews = reviews.filter((r: any) => r.author_id !== user?.id);
   const respLabels = {respond: tcw('respond'), edit: tcw('editResponse'), save: tcw('saveResponse'), placeholder: tcw('responsePlaceholder')};
+  const responseTime = formatResponseTime(company.response_time_hours == null ? null : Number(company.response_time_hours));
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <Link href="/search" className="text-sm text-brand-700 hover:underline">← {t('backToSearch')}</Link>
 
       <header className="mt-4 flex flex-col gap-4 border-b border-border pb-8 sm:flex-row sm:items-start">
-        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-100 text-xl font-semibold text-brand-700">
-          {initials(company.name)}
-        </div>
+        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-brand-100 text-xl font-semibold text-brand-700">{initials(company.name)}</div>
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="text-3xl font-bold tracking-tight text-ink">{company.name}</h1>
@@ -75,13 +76,9 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
             {company.rating_count > 0 && <span className="text-sm text-muted">· {t('recommend', {pct: Math.round(Number(company.recommend_pct))})}</span>}
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">
-            {cats.map((c: any) => (
-              <Link key={c.slug} href={`/category/${c.slug}`} className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft hover:text-brand-700">{localizedName(c.name, locale)}</Link>
-            ))}
+            {cats.map((c: any) => (<Link key={c.slug} href={`/category/${c.slug}`} className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft hover:text-brand-700">{localizedName(c.name, locale)}</Link>))}
             {company.city && <span className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft">{company.city}</span>}
-            {!company.owner_id && !isOwner && (
-              <ClaimButton companyId={company.id} userId={user?.id ?? null} signedIn={!!user} alreadyClaimed={myClaimPending} labels={{claim: t('claim'), pending: t('claimPending')}} />
-            )}
+            {!company.owner_id && !isOwner && (<ClaimButton companyId={company.id} userId={user?.id ?? null} signedIn={!!user} alreadyClaimed={myClaimPending} labels={{claim: t('claim'), pending: t('claimPending')}} />)}
           </div>
         </div>
       </header>
@@ -98,24 +95,13 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
           {company.rating_count > 0 && (
             <section className="mb-8 rounded-2xl border border-border bg-background p-6">
               <h2 className="mb-4 text-lg font-semibold text-ink">{t('criteriaTitle')}</h2>
-              <RatingBars
-                labels={{quality: t('criteria.quality'), value: t('criteria.value'), communication: t('criteria.communication'), punctuality: t('criteria.punctuality')}}
-                quality={Number(company.rating_quality)} value={Number(company.rating_value)} communication={Number(company.rating_communication)} punctuality={Number(company.rating_punctuality)}
-              />
+              <RatingBars labels={{quality: t('criteria.quality'), value: t('criteria.value'), communication: t('criteria.communication'), punctuality: t('criteria.punctuality')}} quality={Number(company.rating_quality)} value={Number(company.rating_value)} communication={Number(company.rating_communication)} punctuality={Number(company.rating_punctuality)} />
             </section>
           )}
 
           {!isOwner && (
             <section className="mb-8">
-              <ReviewComposer
-                companyId={company.id} userId={user?.id ?? null} signedIn={!!user} existing={myReview}
-                labels={{
-                  writeTitle: tcw('writeTitle'), editTitle: tcw('editTitle'), signInPrompt: tcw('signInPrompt'), signInCta: tcw('signInCta'),
-                  quality: tcw('quality'), value: tcw('value'), communication: tcw('communication'), punctuality: tcw('punctuality'),
-                  recommend: tcw('recommend'), reviewTitle: tcw('reviewTitle'), reviewTitlePlaceholder: tcw('reviewTitlePlaceholder'),
-                  body: tcw('body'), bodyPlaceholder: tcw('bodyPlaceholder'), submit: tcw('submit'), update: tcw('update'), posted: tcw('posted'), rateAll: tcw('rateAll')
-                }}
-              />
+              <ReviewComposer companyId={company.id} userId={user?.id ?? null} signedIn={!!user} existing={myReview} labels={{writeTitle: tcw('writeTitle'), editTitle: tcw('editTitle'), signInPrompt: tcw('signInPrompt'), signInCta: tcw('signInCta'), quality: tcw('quality'), value: tcw('value'), communication: tcw('communication'), punctuality: tcw('punctuality'), recommend: tcw('recommend'), reviewTitle: tcw('reviewTitle'), reviewTitlePlaceholder: tcw('reviewTitlePlaceholder'), body: tcw('body'), bodyPlaceholder: tcw('bodyPlaceholder'), submit: tcw('submit'), update: tcw('update'), posted: tcw('posted'), rateAll: tcw('rateAll')}} />
             </section>
           )}
 
@@ -161,6 +147,7 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
         <aside className="space-y-6">
           <section className="rounded-2xl border border-border bg-background p-6">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">{t('contact')}</h2>
+            {responseTime && <p className="mb-3 text-xs font-medium text-brand-700">{tl('respondsIn', {time: responseTime})}</p>}
             <ul className="space-y-2 text-sm">
               {company.phone && <li className="flex items-center gap-2 text-ink-soft"><i className="ti ti-phone" aria-hidden="true" />{company.phone}</li>}
               {company.email && <li className="flex items-center gap-2 text-ink-soft"><i className="ti ti-mail" aria-hidden="true" />{company.email}</li>}
@@ -168,6 +155,8 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
               {company.address && <li className="flex items-start gap-2 text-ink-soft"><i className="ti ti-map-pin mt-0.5" aria-hidden="true" /><span>{company.address}{company.postal_code ? `, ${company.postal_code}` : ''} {company.city}</span></li>}
             </ul>
           </section>
+
+          <LeadForm companyId={company.id} userId={user?.id ?? null} signedIn={!!user} defaultEmail={user?.email ?? null} labels={{getInTouch: tl('getInTouch'), contact: tl('contact'), quote: tl('quote'), message: tl('message'), messagePlaceholder: tl('messagePlaceholder'), email: tl('email'), consent: tl('consent'), send: tl('send'), sent: tl('sent'), signInPrompt: tl('signInPrompt'), signInCta: tl('signInCta'), consentRequired: tl('consentRequired')}} />
 
           {hours && (
             <section className="rounded-2xl border border-border bg-background p-6">

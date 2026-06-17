@@ -196,5 +196,24 @@
     "fEmail": "Email",
     "fSubmit": "Submit for review",
     "fSubmitting": "Submitting…"
+  },
+  "leads": {
+    "getInTouch": "Get in touch",
+    "contact": "Contact",
+    "quote": "Request a quote",
+    "message": "Message",
+    "messagePlaceholder": "How can this business help you?",
+    "email": "Your email (optional)",
+    "consent": "I agree to share my message and email with this business.",
+    "send": "Send message",
+    "sent": "Sent — the business has your message and will be in touch.",
+    "signInPrompt": "Sign in to contact this business directly.",
+    "signInCta": "Sign in",
+    "consentRequired": "Please tick the box to share your message.",
+    "respondsIn": "Typically responds {time}",
+    "enquiries": "Enquiries",
+    "markResponded": "Mark answered",
+    "answered": "Answered",
+    "noEnquiries": "No enquiries yet."
   }
 }
