@@ -88,7 +88,7 @@ export async function getCompanyBySlug(slug: string) {
 export async function getCompanyReviews(companyId: string) {
   const {data} = await db()
     .from('reviews')
-    .select('*, profiles(display_name, avatar_url), review_responses(*)')
+    .select('*, profiles!reviews_author_id_fkey(display_name, avatar_url), review_responses(*)')
     .eq('company_id', companyId)
     .eq('status', 'published')
     .order('created_at', {ascending: false});

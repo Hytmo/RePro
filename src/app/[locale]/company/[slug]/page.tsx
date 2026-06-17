@@ -103,7 +103,7 @@ export default async function CompanyPage({
             </h2>
             <div className="space-y-5">
               {reviews.map((rv: any) => {
-                const resp = (rv.review_responses ?? [])[0];
+                const _rr = rv.review_responses; const resp = Array.isArray(_rr) ? _rr[0] : _rr;
                 return (
                   <article key={rv.id} className="rounded-2xl border border-border bg-background p-5">
                     <div className="flex items-center justify-between gap-3">
