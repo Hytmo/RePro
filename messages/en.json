@@ -39,5 +39,60 @@
     "terms": "Terms",
     "reviewPolicy": "Review policy",
     "rights": "All rights reserved."
+  },
+  "search": {
+    "title": "Search results",
+    "resultsCount": "{count, plural, =0 {No companies} =1 {1 company} other {# companies}}",
+    "noResults": "No companies match your search",
+    "noResultsHint": "Try removing a filter or searching a different service.",
+    "category": "Category",
+    "allCategories": "All categories",
+    "city": "City",
+    "allCities": "All cities",
+    "minRating": "Min rating",
+    "any": "any",
+    "badgedOnly": "Verified only",
+    "sortBy": "Sort by",
+    "relevance": "Relevance",
+    "rating": "Highest rated",
+    "reviews": "Most reviewed",
+    "newest": "Newest"
+  },
+  "company": {
+    "verified": "Verified",
+    "about": "About",
+    "criteriaTitle": "Rating breakdown",
+    "criteria": {
+      "quality": "Quality of work",
+      "value": "Value for money",
+      "communication": "Communication",
+      "punctuality": "Punctuality"
+    },
+    "recommend": "{pct}% would recommend",
+    "reviewsTitle": "Reviews",
+    "writeReviewNote": "Sign in to write a review — accounts and reviews arrive in the next update.",
+    "backToSearch": "Back to search",
+    "contact": "Contact",
+    "website": "Visit website",
+    "openingHours": "Opening hours",
+    "closed": "Closed",
+    "days": {
+      "mon": "Monday",
+      "tue": "Tuesday",
+      "wed": "Wednesday",
+      "thu": "Thursday",
+      "fri": "Friday",
+      "sat": "Saturday",
+      "sun": "Sunday"
+    }
+  },
+  "reviews": {
+    "anonymous": "Anonymous",
+    "businessResponse": "Response from the business",
+    "helpfulCount": "{count, plural, =1 {1 person found this helpful} other {# people found this helpful}}"
+  },
+  "categories": {
+    "title": "Browse categories",
+    "subtitle": "Find the right service for the job."
   }
 }
