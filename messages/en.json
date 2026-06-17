@@ -215,5 +215,34 @@
     "markResponded": "Mark answered",
     "answered": "Answered",
     "noEnquiries": "No enquiries yet."
+  },
+  "cookies": {
+    "text": "We use essential cookies to keep you signed in. Non-essential cookies are off until you accept.",
+    "learnMore": "Privacy policy",
+    "essential": "Essential only",
+    "accept": "Accept all"
+  },
+  "account": {
+    "title": "Your account",
+    "signedInAs": "Signed in as",
+    "exportTitle": "Export your data",
+    "exportText": "Download a copy of your profile, reviews and enquiries as a JSON file.",
+    "exportButton": "Export my data",
+    "dangerTitle": "Delete account",
+    "deleteText": "Permanently delete your account and all your reviews and enquiries. This cannot be undone.",
+    "deleteButton": "Delete my account",
+    "deleteConfirm": "Delete your account and all your data? This cannot be undone."
+  },
+  "compare": {
+    "title": "Compare businesses",
+    "select": "Compare",
+    "compareCta": "Compare",
+    "clear": "Clear",
+    "overall": "Overall rating",
+    "recommend": "Would recommend",
+    "reviewsCount": "Reviews",
+    "verified": "Verified badge",
+    "pickPrompt": "Pick at least two businesses from search results to compare them side by side.",
+    "backToSearch": "Go to search"
   }
 }

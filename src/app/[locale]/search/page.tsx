@@ -1,8 +1,8 @@
 import {getTranslations, setRequestLocale} from 'next-intl/server';
 import {searchCompanies, getCategories, getCities} from '@/lib/queries';
 import {localizedName} from '@/lib/format';
-import CompanyCard from '@/components/CompanyCard';
 import SearchFilters from '@/components/SearchFilters';
+import CompareResults from '@/components/CompareResults';
 
 export default async function SearchPage({
   params,
@@ -16,20 +16,13 @@ export default async function SearchPage({
   const sp = await searchParams;
   const t = await getTranslations('search');
   const tc = await getTranslations('company');
+  const tcmp = await getTranslations('compare');
 
   const [categories, cities, results] = await Promise.all([
     getCategories(),
     getCities(),
-    searchCompanies({
-      q: sp.q,
-      category: sp.category,
-      city: sp.city,
-      minRating: sp.minRating ? Number(sp.minRating) : undefined,
-      badgedOnly: sp.badged === '1',
-      sort: sp.sort
-    })
+    searchCompanies({q: sp.q, category: sp.category, city: sp.city, minRating: sp.minRating ? Number(sp.minRating) : undefined, badgedOnly: sp.badged === '1', sort: sp.sort})
   ]);
-
   const catOptions = categories.map((c: any) => ({slug: c.slug, label: localizedName(c.name, locale)}));
 
   return (
@@ -41,20 +34,7 @@ export default async function SearchPage({
         <SearchFilters
           categories={catOptions}
           cities={cities}
-          labels={{
-            category: t('category'),
-            allCategories: t('allCategories'),
-            city: t('city'),
-            allCities: t('allCities'),
-            minRating: t('minRating'),
-            any: t('any'),
-            badgedOnly: t('badgedOnly'),
-            sortBy: t('sortBy'),
-            relevance: t('relevance'),
-            rating: t('rating'),
-            reviews: t('reviews'),
-            newest: t('newest')
-          }}
+          labels={{category: t('category'), allCategories: t('allCategories'), city: t('city'), allCities: t('allCities'), minRating: t('minRating'), any: t('any'), badgedOnly: t('badgedOnly'), sortBy: t('sortBy'), relevance: t('relevance'), rating: t('rating'), reviews: t('reviews'), newest: t('newest')}}
         />
       </div>
 
@@ -64,10 +44,8 @@ export default async function SearchPage({
           <p className="mt-1 text-sm text-muted">{t('noResultsHint')}</p>
         </div>
       ) : (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {results.map((c: any) => (
-            <CompanyCard key={c.id} company={c} locale={locale} badgeLabel={tc('verified')} />
-          ))}
+        <div className="mt-6">
+          <CompareResults companies={results} locale={locale} badgeLabel={tc('verified')} labels={{select: tcmp('select'), compareCta: tcmp('compareCta'), clear: tcmp('clear')}} />
         </div>
       )}
     </div>
