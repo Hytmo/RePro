@@ -7,14 +7,14 @@ import {createClient} from '@/lib/supabase/server';
 export default async function Header() {
   const t = await getTranslations('nav');
   const supabase = await createClient();
-  const {
-    data: {user}
-  } = await supabase.auth.getUser();
+  const {data: {user}} = await supabase.auth.getUser();
 
   let displayName: string | null = null;
+  let isAdmin = false;
   if (user) {
-    const {data} = await supabase.from('profiles').select('display_name').eq('id', user.id).maybeSingle();
+    const {data} = await supabase.from('profiles').select('display_name, role').eq('id', user.id).maybeSingle();
     displayName = data?.display_name || user.email || 'Account';
+    isAdmin = data?.role === 'admin';
   }
 
   return (
@@ -28,6 +28,7 @@ export default async function Header() {
         <nav className="hidden items-center gap-6 text-sm font-medium text-ink-soft md:flex">
           <Link href="/categories" className="transition hover:text-brand-700">{t('categories')}</Link>
           <Link href="/business" className="transition hover:text-brand-700">{t('forBusiness')}</Link>
+          {isAdmin && <Link href="/admin" className="transition hover:text-brand-700">{t('admin')}</Link>}
         </nav>
 
         <div className="flex items-center gap-3">

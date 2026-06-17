@@ -11,6 +11,8 @@ import CompanyMap from '@/components/CompanyMap';
 import ReviewComposer from '@/components/ReviewComposer';
 import HelpfulButton from '@/components/HelpfulButton';
 import ReportButton from '@/components/ReportButton';
+import ClaimButton from '@/components/ClaimButton';
+import ResponseComposer from '@/components/ResponseComposer';
 
 export async function generateMetadata({params}: {params: Promise<{locale: string; slug: string}>}) {
   const {slug} = await params;
@@ -30,13 +32,19 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
 
   const supabase = await createClient();
   const {data: {user}} = await supabase.auth.getUser();
+  const isOwner = !!user && company.owner_id === user.id;
   let myReview: any = null;
+  let myClaimPending = false;
   const myHelpful = new Set<string>();
   if (user) {
     const {data: mine} = await supabase.from('reviews').select('*').eq('company_id', company.id).eq('author_id', user.id).maybeSingle();
     myReview = mine;
     const {data: votes} = await supabase.from('review_votes').select('review_id, vote').eq('voter_id', user.id);
     (votes ?? []).forEach((v: any) => v.vote === 1 && myHelpful.add(v.review_id));
+    if (!company.owner_id) {
+      const {data: claim} = await supabase.from('company_claims').select('id').eq('company_id', company.id).eq('user_id', user.id).maybeSingle();
+      myClaimPending = !!claim;
+    }
   }
 
   const t = await getTranslations('company');
@@ -47,6 +55,7 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
   const dateFmt = new Intl.DateTimeFormat(locale, {year: 'numeric', month: 'short', day: 'numeric'});
   const hours = company.opening_hours as Record<string, string> | null;
   const otherReviews = reviews.filter((r: any) => r.author_id !== user?.id);
+  const respLabels = {respond: tcw('respond'), edit: tcw('editResponse'), save: tcw('saveResponse'), placeholder: tcw('responsePlaceholder')};
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
@@ -63,17 +72,16 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-3">
             <StarRating value={Number(company.rating_avg)} count={company.rating_count} size={20} showValue />
-            {company.rating_count > 0 && (
-              <span className="text-sm text-muted">· {t('recommend', {pct: Math.round(Number(company.recommend_pct))})}</span>
-            )}
+            {company.rating_count > 0 && <span className="text-sm text-muted">· {t('recommend', {pct: Math.round(Number(company.recommend_pct))})}</span>}
           </div>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap items-center gap-2">
             {cats.map((c: any) => (
-              <Link key={c.slug} href={`/category/${c.slug}`} className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft hover:text-brand-700">
-                {localizedName(c.name, locale)}
-              </Link>
+              <Link key={c.slug} href={`/category/${c.slug}`} className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft hover:text-brand-700">{localizedName(c.name, locale)}</Link>
             ))}
             {company.city && <span className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft">{company.city}</span>}
+            {!company.owner_id && !isOwner && (
+              <ClaimButton companyId={company.id} userId={user?.id ?? null} signedIn={!!user} alreadyClaimed={myClaimPending} labels={{claim: t('claim'), pending: t('claimPending')}} />
+            )}
           </div>
         </div>
       </header>
@@ -92,28 +100,24 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
               <h2 className="mb-4 text-lg font-semibold text-ink">{t('criteriaTitle')}</h2>
               <RatingBars
                 labels={{quality: t('criteria.quality'), value: t('criteria.value'), communication: t('criteria.communication'), punctuality: t('criteria.punctuality')}}
-                quality={Number(company.rating_quality)}
-                value={Number(company.rating_value)}
-                communication={Number(company.rating_communication)}
-                punctuality={Number(company.rating_punctuality)}
+                quality={Number(company.rating_quality)} value={Number(company.rating_value)} communication={Number(company.rating_communication)} punctuality={Number(company.rating_punctuality)}
               />
             </section>
           )}
 
-          <section className="mb-8">
-            <ReviewComposer
-              companyId={company.id}
-              userId={user?.id ?? null}
-              signedIn={!!user}
-              existing={myReview}
-              labels={{
-                writeTitle: tcw('writeTitle'), editTitle: tcw('editTitle'), signInPrompt: tcw('signInPrompt'), signInCta: tcw('signInCta'),
-                quality: tcw('quality'), value: tcw('value'), communication: tcw('communication'), punctuality: tcw('punctuality'),
-                recommend: tcw('recommend'), reviewTitle: tcw('reviewTitle'), reviewTitlePlaceholder: tcw('reviewTitlePlaceholder'),
-                body: tcw('body'), bodyPlaceholder: tcw('bodyPlaceholder'), submit: tcw('submit'), update: tcw('update'), posted: tcw('posted'), rateAll: tcw('rateAll')
-              }}
-            />
-          </section>
+          {!isOwner && (
+            <section className="mb-8">
+              <ReviewComposer
+                companyId={company.id} userId={user?.id ?? null} signedIn={!!user} existing={myReview}
+                labels={{
+                  writeTitle: tcw('writeTitle'), editTitle: tcw('editTitle'), signInPrompt: tcw('signInPrompt'), signInCta: tcw('signInCta'),
+                  quality: tcw('quality'), value: tcw('value'), communication: tcw('communication'), punctuality: tcw('punctuality'),
+                  recommend: tcw('recommend'), reviewTitle: tcw('reviewTitle'), reviewTitlePlaceholder: tcw('reviewTitlePlaceholder'),
+                  body: tcw('body'), bodyPlaceholder: tcw('bodyPlaceholder'), submit: tcw('submit'), update: tcw('update'), posted: tcw('posted'), rateAll: tcw('rateAll')
+                }}
+              />
+            </section>
+          )}
 
           <section>
             <h2 className="mb-4 text-lg font-semibold text-ink">{t('reviewsTitle')} <span className="text-muted">({reviews.length})</span></h2>
@@ -124,9 +128,7 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
                   <article key={rv.id} className="rounded-2xl border border-border bg-background p-5">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-xs font-semibold text-ink-soft">
-                          {initials(rv.profiles?.display_name ?? '?')}
-                        </span>
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-xs font-semibold text-ink-soft">{initials(rv.profiles?.display_name ?? '?')}</span>
                         <div>
                           <p className="text-sm font-medium text-ink">{rv.profiles?.display_name ?? tr('anonymous')}</p>
                           <p className="text-xs text-muted">{dateFmt.format(new Date(rv.created_at))}</p>
@@ -144,8 +146,10 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
                       <div className="mt-4 rounded-xl border-l-2 border-brand-300 bg-surface px-4 py-3">
                         <p className="text-xs font-semibold text-brand-700">{tr('businessResponse')}</p>
                         <p className="mt-1 text-sm leading-relaxed text-ink-soft">{resp.body}</p>
+                        {isOwner && <div className="mt-2"><ResponseComposer reviewId={rv.id} userId={user!.id} existingBody={resp.body} labels={respLabels} /></div>}
                       </div>
                     )}
+                    {!resp && isOwner && <div className="mt-3"><ResponseComposer reviewId={rv.id} userId={user!.id} existingBody={null} labels={respLabels} /></div>}
                   </article>
                 );
               })}
@@ -169,9 +173,7 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
             <section className="rounded-2xl border border-border bg-background p-6">
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">{t('openingHours')}</h2>
               <table className="w-full text-sm"><tbody>
-                {DAYS.map((d) => (
-                  <tr key={d}><td className="py-1 text-ink-soft">{t(`days.${d}`)}</td><td className="py-1 text-right text-ink">{!hours[d] || hours[d] === 'closed' ? t('closed') : hours[d]}</td></tr>
-                ))}
+                {DAYS.map((d) => (<tr key={d}><td className="py-1 text-ink-soft">{t(`days.${d}`)}</td><td className="py-1 text-right text-ink">{!hours[d] || hours[d] === 'closed' ? t('closed') : hours[d]}</td></tr>))}
               </tbody></table>
             </section>
           )}

@@ -13,7 +13,8 @@
     "signIn": "Sign in",
     "search": "Search",
     "signUp": "Sign up",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "admin": "Admin"
   },
   "home": {
     "heroTitle": "Find Luxembourg businesses you can trust",
@@ -86,7 +87,9 @@
       "fri": "Friday",
       "sat": "Saturday",
       "sun": "Sunday"
-    }
+    },
+    "claim": "Claim this business",
+    "claimPending": "Claim pending"
   },
   "reviews": {
     "anonymous": "Anonymous",
@@ -136,6 +139,62 @@
     "submit": "Post review",
     "update": "Update review",
     "posted": "Thanks! Your review is now live.",
-    "rateAll": "Please rate all four criteria."
+    "rateAll": "Please rate all four criteria.",
+    "respond": "Respond",
+    "editResponse": "Edit response",
+    "saveResponse": "Save response",
+    "responsePlaceholder": "Write a public response to this review…"
+  },
+  "admin": {
+    "title": "Admin",
+    "pendingCompanies": "Pending companies",
+    "pendingClaims": "Pending claims",
+    "openReports": "Open reports",
+    "verificationQueue": "Verification queue",
+    "claims": "Ownership claims",
+    "claimedBy": "Claimed by",
+    "userSubmitted": "User-submitted",
+    "selfRegistered": "Self-registered",
+    "removedReviews": "Removed reviews",
+    "review": "Review",
+    "reason": "Reason",
+    "approve": "Approve",
+    "reject": "Reject",
+    "resolve": "Dismiss",
+    "removeReview": "Remove review",
+    "remove": "Remove",
+    "restore": "Restore",
+    "nothingHere": "Nothing here right now."
+  },
+  "business": {
+    "title": "For businesses",
+    "subtitle": "Claim or list your business on RePro, respond to reviews and build trust with customers across Luxembourg.",
+    "listCta": "List your business",
+    "yourBusinesses": "Your businesses",
+    "status": {
+      "draft": "Draft",
+      "pending": "Pending review",
+      "verified": "Verified",
+      "rejected": "Rejected"
+    },
+    "benefitRespondTitle": "Respond to reviews",
+    "benefitRespondText": "Reply publicly to every review and show customers you listen.",
+    "benefitFoundTitle": "Get found",
+    "benefitFoundText": "Appear in search and category pages when people look for your service.",
+    "benefitFreeTitle": "Free to start",
+    "benefitFreeText": "Claim and manage your profile for free. Premium badge and analytics come later.",
+    "newTitle": "List your business",
+    "newSubtitle": "Submit your details — our team reviews new listings before they go live.",
+    "fName": "Business name",
+    "fDescription": "Description",
+    "fCategory": "Category",
+    "fChooseCategory": "Choose a category…",
+    "fCity": "City",
+    "fAddress": "Address",
+    "fPhone": "Phone",
+    "fWebsite": "Website",
+    "fEmail": "Email",
+    "fSubmit": "Submit for review",
+    "fSubmitting": "Submitting…"
   }
 }
