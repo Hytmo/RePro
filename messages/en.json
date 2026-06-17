@@ -11,7 +11,9 @@
     "categories": "Categories",
     "forBusiness": "For businesses",
     "signIn": "Sign in",
-    "search": "Search"
+    "search": "Search",
+    "signUp": "Sign up",
+    "signOut": "Sign out"
   },
   "home": {
     "heroTitle": "Find Luxembourg businesses you can trust",
@@ -89,10 +91,51 @@
   "reviews": {
     "anonymous": "Anonymous",
     "businessResponse": "Response from the business",
-    "helpfulCount": "{count, plural, =1 {1 person found this helpful} other {# people found this helpful}}"
+    "helpfulCount": "{count, plural, =1 {1 person found this helpful} other {# people found this helpful}}",
+    "none": "No written reviews yet — be the first.",
+    "helpful": "Helpful",
+    "report": "Report",
+    "reportReason": "Reason (optional)",
+    "reportSubmit": "Send",
+    "reported": "Reported — thank you"
   },
   "categories": {
     "title": "Browse categories",
     "subtitle": "Find the right service for the job."
+  },
+  "auth": {
+    "signInTitle": "Welcome back",
+    "signInSubtitle": "Sign in to write reviews and manage your account.",
+    "signUpTitle": "Create your account",
+    "signUpSubtitle": "Join RePro to review Luxembourg businesses you've used.",
+    "email": "Email",
+    "password": "Password",
+    "displayName": "Display name",
+    "signInButton": "Sign in",
+    "signUpButton": "Create account",
+    "noAccount": "New to RePro?",
+    "haveAccount": "Already have an account?",
+    "signInLink": "Sign in",
+    "signUpLink": "Create one",
+    "checkEmail": "Check your email to confirm your account, then sign in."
+  },
+  "compose": {
+    "writeTitle": "Write a review",
+    "editTitle": "Edit your review",
+    "signInPrompt": "Sign in to share your experience with this business.",
+    "signInCta": "Sign in to review",
+    "quality": "Quality of work",
+    "value": "Value for money",
+    "communication": "Communication",
+    "punctuality": "Punctuality",
+    "recommend": "I would recommend this business",
+    "reviewTitle": "Title",
+    "reviewTitlePlaceholder": "Sum up your experience",
+    "body": "Your review",
+    "bodyPlaceholder": "Tell others about your experience with this business…",
+    "submit": "Post review",
+    "update": "Update review",
+    "posted": "Thanks! Your review is now live.",
+    "rateAll": "Please rate all four criteria."
   }
 }
