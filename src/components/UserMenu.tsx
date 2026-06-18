@@ -1,18 +1,18 @@
 'use client';
 
 import {createClient} from '@/lib/supabase/client';
-import {useRouter, Link} from '@/i18n/navigation';
+import {Link} from '@/i18n/navigation';
 import {useState} from 'react';
 
 export default function UserMenu({name, signOutLabel}: {name: string; signOutLabel: string}) {
-  const router = useRouter();
   const [busy, setBusy] = useState(false);
 
   async function signOut() {
     setBusy(true);
     await createClient().auth.signOut();
-    router.refresh();
-    router.push('/');
+    const seg = window.location.pathname.split('/')[1];
+    const loc = ['en', 'de', 'fr', 'lb'].includes(seg) ? seg : 'en';
+    window.location.assign(`/${loc}`);
   }
 
   return (

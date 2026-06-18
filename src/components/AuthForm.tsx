@@ -2,7 +2,7 @@
 
 import {useState} from 'react';
 import {createClient} from '@/lib/supabase/client';
-import {useRouter, Link} from '@/i18n/navigation';
+import {Link} from '@/i18n/navigation';
 
 type Labels = {
   email: string;
@@ -21,7 +21,6 @@ export default function AuthForm({
   mode: 'signin' | 'signup';
   labels: Labels;
 }) {
-  const router = useRouter();
   const supabase = createClient();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -47,15 +46,17 @@ export default function AuthForm({
         });
         if (error) setError(error.message);
         else if (data.session) {
-          router.refresh();
-          router.push('/');
+          const seg = window.location.pathname.split('/')[1];
+          const loc = ['en', 'de', 'fr', 'lb'].includes(seg) ? seg : 'en';
+          window.location.assign(`/${loc}`);
         } else setNotice(labels.checkEmail);
       } else {
         const {error} = await supabase.auth.signInWithPassword({email, password});
         if (error) setError(error.message);
         else {
-          router.refresh();
-          router.push('/');
+          const seg = window.location.pathname.split('/')[1];
+          const loc = ['en', 'de', 'fr', 'lb'].includes(seg) ? seg : 'en';
+          window.location.assign(`/${loc}`);
         }
       }
     } finally {
