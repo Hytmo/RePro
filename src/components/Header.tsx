@@ -8,19 +8,20 @@ import {createClient} from '@/lib/supabase/server';
 export default async function Header() {
   const t = await getTranslations('nav');
   const supabase = await createClient();
-  const {
-    data: {user}
-  } = await supabase.auth.getUser();
+  // Verify the JWT locally (no network round-trip to the Auth server); the proxy
+  // middleware already validates & refreshes the session cookie on each request.
+  const {data: claimsData} = await supabase.auth.getClaims();
+  const claims = claimsData?.claims as {sub?: string; email?: string} | undefined;
 
   let displayName: string | null = null;
   let isAdmin = false;
-  if (user) {
+  if (claims?.sub) {
     const {data} = await supabase
       .from('profiles')
       .select('display_name, role')
-      .eq('id', user.id)
+      .eq('id', claims.sub)
       .maybeSingle();
-    displayName = data?.display_name || user.email || 'Account';
+    displayName = data?.display_name || claims.email || 'Account';
     isAdmin = data?.role === 'admin';
   }
 
@@ -69,7 +70,7 @@ export default async function Header() {
 
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <LocaleSwitcher />
-          {user ? (
+          {claims?.sub ? (
             <UserMenu name={displayName!} signOutLabel={t('signOut')} />
           ) : (
             <>

@@ -1,3 +1,4 @@
+import {unstable_cache} from 'next/cache';
 import {createClient} from '@supabase/supabase-js';
 
 function db() {
@@ -8,10 +9,14 @@ export interface CompanyFilters {
   q?: string; category?: string; minRating?: number; badgedOnly?: boolean; city?: string; sort?: string;
 }
 
-export async function getCategories() {
-  const {data} = await db().from('categories').select('*').order('sort_order');
-  return data ?? [];
-}
+export const getCategories = unstable_cache(
+  async () => {
+    const {data} = await db().from('categories').select('*').order('sort_order');
+    return data ?? [];
+  },
+  ['categories-all'],
+  {revalidate: 600, tags: ['categories']}
+);
 export async function getCategoryBySlug(slug: string) {
   const {data} = await db().from('categories').select('*').eq('slug', slug).maybeSingle();
   return data;
