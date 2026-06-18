@@ -37,7 +37,7 @@
     "categoryHeading": "Browse by the job you need done",
     "viewAllCategories": "View all categories",
     "exploreKicker": "Explore now",
-    "featuredHeading": "Highly rated businesses",
+    "featuredHeading": "Featured listings",
     "seeSearch": "See search",
     "comingSoon": "We're just getting started — search and full company profiles arrive shortly.",
     "valueProps": {
@@ -48,7 +48,8 @@
       "transparentTitle": "Transparent ranking",
       "transparentText": "No pay-to-rank. Paying buys a badge and features, never a higher rating."
     },
-    "servicesCount": "{count, plural, =1 {1 service} other {# services}}"
+    "servicesCount": "{count, plural, =1 {1 service} other {# services}}",
+    "newBadge": "New"
   },
   "footer": {
     "tagline": "Honest reviews of Luxembourg businesses.",

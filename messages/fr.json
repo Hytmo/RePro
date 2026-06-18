@@ -37,7 +37,7 @@
     "categoryHeading": "Parcourez selon le service recherché",
     "viewAllCategories": "Voir toutes les catégories",
     "exploreKicker": "Explorer",
-    "featuredHeading": "Entreprises très bien notées",
+    "featuredHeading": "Sélection d’entreprises",
     "seeSearch": "Voir la recherche",
     "comingSoon": "Nous débutons à peine — la recherche et les profils complets arrivent bientôt.",
     "valueProps": {
@@ -48,7 +48,8 @@
       "transparentTitle": "Classement transparent",
       "transparentText": "Pas de classement payant. Payer offre un badge et des fonctionnalités, jamais une meilleure note."
     },
-    "servicesCount": "{count, plural, =1 {1 service} other {# services}}"
+    "servicesCount": "{count, plural, =1 {1 service} other {# services}}",
+    "newBadge": "Nouveau"
   },
   "footer": {
     "tagline": "Avis honnêtes sur les entreprises luxembourgeoises.",

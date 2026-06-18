@@ -37,7 +37,7 @@
     "categoryHeading": "Nach der benötigten Arbeit suchen",
     "viewAllCategories": "Alle Kategorien ansehen",
     "exploreKicker": "Jetzt entdecken",
-    "featuredHeading": "Sehr gut bewertete Unternehmen",
+    "featuredHeading": "Ausgewählte Einträge",
     "seeSearch": "Zur Suche",
     "comingSoon": "Wir fangen gerade erst an — Suche und vollständige Profile folgen in Kürze.",
     "valueProps": {
@@ -48,7 +48,8 @@
       "transparentTitle": "Transparentes Ranking",
       "transparentText": "Kein Pay-to-Rank. Bezahlen bringt ein Abzeichen und Funktionen, niemals eine bessere Bewertung."
     },
-    "servicesCount": "{count, plural, =1 {1 Dienst} other {# Dienste}}"
+    "servicesCount": "{count, plural, =1 {1 Dienst} other {# Dienste}}",
+    "newBadge": "Neu"
   },
   "footer": {
     "tagline": "Ehrliche Bewertungen von Luxemburger Unternehmen.",

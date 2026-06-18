@@ -74,12 +74,18 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
                         <p className="truncate font-bold text-ink">{company.name}</p>
                       </div>
                       <p className="mt-1 truncate text-xs text-muted">
-                        {company.city} - {t('reviewCount', {count: Number(company.rating_count)})}
+                        {[localizedName(company.company_categories?.[0]?.categories?.name, locale), company.city].filter(Boolean).join(' · ')}
                       </p>
                     </div>
-                    <span className="rounded-full bg-accent-400/20 px-2.5 py-1 text-xs font-black text-ink">
-                      {Number(company.rating_avg).toFixed(1)}
-                    </span>
+                    {Number(company.rating_count) > 0 ? (
+                      <span className="rounded-full bg-accent-400/20 px-2.5 py-1 text-xs font-black text-ink">
+                        {Number(company.rating_avg).toFixed(1)}
+                      </span>
+                    ) : (
+                      <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-bold text-muted">
+                        {t('newBadge')}
+                      </span>
+                    )}
                   </Link>
                 ))}
               </div>

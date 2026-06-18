@@ -37,7 +37,7 @@
     "categoryHeading": "Sich no der Aarbecht déi s du brauchs",
     "viewAllCategories": "All Kategorien uweisen",
     "exploreKicker": "Elo entdecken",
-    "featuredHeading": "Staark bewäert Betriber",
+    "featuredHeading": "Ausgewielte Betriber",
     "seeSearch": "Zur Sich",
     "comingSoon": "Mir fänken eréischt un — Sich a komplett Profiler kommen geschwënn.",
     "valueProps": {
@@ -48,7 +48,8 @@
       "transparentTitle": "Transparent Klassement",
       "transparentText": "Kee Bezuele fir besser ze ranken. Bezuele bréngt e Badge a Featuren, ni eng besser Bewäertung."
     },
-    "servicesCount": "{count, plural, =1 {1 Service} other {# Servicer}}"
+    "servicesCount": "{count, plural, =1 {1 Service} other {# Servicer}}",
+    "newBadge": "Nei"
   },
   "footer": {
     "tagline": "Éierlech Bewäertunge vu Lëtzebuerger Betriber.",
