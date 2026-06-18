@@ -6,13 +6,17 @@ export default async function TermsPage({params}: {params: Promise<{locale: stri
   const {locale} = await params;
   setRequestLocale(locale);
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <h1 className="text-3xl font-bold tracking-tight text-ink">Terms of service</h1>
-      <p className="mt-1 text-sm text-muted">Last updated: 17 June 2026</p>
-      <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-        Draft for review. This is a starting template and not legal advice — please have it reviewed by a qualified lawyer before launch.
+    <div className="shell py-12">
+      <div className="max-w-3xl">
+        <span className="repro-kicker">Legal</span>
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-ink">Terms of service</h1>
+        <p className="mt-1 text-sm text-muted">Last updated: 17 June 2026</p>
       </div>
-      <div className="mt-6 space-y-5 leading-relaxed text-ink-soft">
+      <div className="mt-6 max-w-3xl rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        Draft for review. This is a starting template and not legal advice - please have it reviewed by a qualified lawyer before launch.
+      </div>
+      <div className="repro-card mt-6 max-w-3xl rounded-lg p-6">
+        <div className="space-y-5 leading-relaxed text-ink-soft">
         <p>By using RePro.lu you agree to these terms. If you do not agree, please do not use the service.</p>
         <h2 className="text-lg font-semibold text-ink">Accounts</h2>
         <p>You are responsible for your account and for keeping your credentials secure. You must provide accurate information and be at least 16 years old to create an account.</p>
@@ -26,6 +30,7 @@ export default async function TermsPage({params}: {params: Promise<{locale: stri
         <p>The service is provided &quot;as is&quot;. Reviews are the opinions of their authors. To the extent permitted by law, we are not liable for content posted by users or businesses.</p>
         <h2 className="text-lg font-semibold text-ink">Governing law</h2>
         <p>These terms are governed by the laws of the Grand Duchy of Luxembourg.</p>
+        </div>
       </div>
     </div>
   );

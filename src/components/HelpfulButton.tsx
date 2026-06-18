@@ -1,6 +1,7 @@
 'use client';
 
 import {useState} from 'react';
+import {ThumbsUp} from 'lucide-react';
 import {createClient} from '@/lib/supabase/client';
 import {useRouter} from '@/i18n/navigation';
 
@@ -52,7 +53,7 @@ export default function HelpfulButton({
         voted ? 'border-brand-300 bg-brand-50 text-brand-700' : 'border-border text-ink-soft hover:border-brand-300'
       }`}
     >
-      <i className="ti ti-thumb-up" aria-hidden="true" />
+      <ThumbsUp className="h-3.5 w-3.5" aria-hidden="true" strokeWidth={2.4} />
       {label} {n > 0 ? `(${n})` : ''}
     </button>
   );

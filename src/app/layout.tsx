@@ -9,7 +9,7 @@ import './globals.css';
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('meta');
   return {
-    title: {default: t('title'), template: '%s · RePro'},
+    title: {default: t('title'), template: '%s \u00b7 RePro'},
     description: t('description'),
     metadataBase: new URL('https://repro.lu')
   };
@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
   const locale = await getLocale();
+
   return (
     <html lang={locale}>
       <body className="flex min-h-screen flex-col bg-background text-ink antialiased">

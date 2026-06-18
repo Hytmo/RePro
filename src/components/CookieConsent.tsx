@@ -9,9 +9,12 @@ export default function CookieConsent() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    try {
-      if (!localStorage.getItem('repro-consent')) setShow(true);
-    } catch {}
+    const timer = window.setTimeout(() => {
+      try {
+        if (!localStorage.getItem('repro-consent')) setShow(true);
+      } catch {}
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   function choose(value: 'all' | 'essential') {
@@ -26,14 +29,14 @@ export default function CookieConsent() {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl flex-col items-start gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p className="text-sm text-ink-soft">
+      <div className="shell flex flex-col items-start gap-3 py-4 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-2xl text-sm text-ink-soft">
           {t('text')}{' '}
-          <Link href="/privacy" className="font-medium text-brand-700 hover:underline">{t('learnMore')}</Link>
+          <Link href="/privacy" className="font-bold text-brand-700 hover:underline">{t('learnMore')}</Link>
         </p>
         <div className="flex shrink-0 gap-2">
-          <button onClick={() => choose('essential')} className="rounded-lg border border-border px-3.5 py-2 text-sm font-medium text-ink-soft transition hover:border-brand-400">{t('essential')}</button>
-          <button onClick={() => choose('all')} className="rounded-lg bg-brand-600 px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-brand-700">{t('accept')}</button>
+          <button onClick={() => choose('essential')} className="rounded-full border border-border bg-white px-3.5 py-2 text-sm font-bold text-ink-soft transition hover:border-brand-400">{t('essential')}</button>
+          <button onClick={() => choose('all')} className="rounded-full bg-ink px-3.5 py-2 text-sm font-black text-white transition hover:bg-brand-700">{t('accept')}</button>
         </div>
       </div>
     </div>

@@ -14,8 +14,8 @@ export default function StarInput({
   const [hover, setHover] = useState(0);
   const shown = hover || value;
   return (
-    <div className="flex items-center justify-between gap-3">
-      <span className="text-sm text-ink-soft">{label}</span>
+    <div className="flex items-center justify-between gap-3 rounded-md bg-surface px-3 py-2">
+      <span className="text-sm font-bold text-ink-soft">{label}</span>
       <span className="flex" onMouseLeave={() => setHover(0)}>
         {[1, 2, 3, 4, 5].map((i) => (
           <button

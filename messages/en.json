@@ -14,15 +14,31 @@
     "search": "Search",
     "signUp": "Sign up",
     "signOut": "Sign out",
-    "admin": "Admin"
+    "admin": "Admin",
+    "tagline": "Reviews for Luxembourg"
   },
   "home": {
+    "kicker": "Luxembourg review intelligence",
     "heroTitle": "Find Luxembourg businesses you can trust",
     "heroSubtitle": "Real, verified reviews of local service providers — rated on what matters: quality, value, communication and more.",
     "searchPlaceholder": "Search a service or company…",
     "searchLocationPlaceholder": "Location",
     "searchButton": "Search",
+    "serviceLabel": "Service",
+    "locationLabel": "Commune",
     "popularCategories": "Popular categories",
+    "snapshotLabel": "Trust snapshot",
+    "snapshotTitle": "Verified local services",
+    "liveMvp": "Live MVP",
+    "topMatches": "Top matches",
+    "sampleReviews": "Sample reviews",
+    "paidRankBoosts": "Paid rank boosts",
+    "reviewCount": "{count, plural, =1 {1 review} other {# reviews}}",
+    "categoryHeading": "Browse by the job you need done",
+    "viewAllCategories": "View all categories",
+    "exploreKicker": "Explore now",
+    "featuredHeading": "Highly rated businesses",
+    "seeSearch": "See search",
     "comingSoon": "We're just getting started — search and full company profiles arrive shortly.",
     "valueProps": {
       "verifiedTitle": "Verified reviews",
@@ -35,15 +51,18 @@
   },
   "footer": {
     "tagline": "Honest reviews of Luxembourg businesses.",
+    "description": "A review-first directory built for Luxembourg service decisions: clear ratings, verified signals, fair company dialogue, and no pay-to-rank shortcuts.",
     "product": "Product",
     "company": "Company",
     "legal": "Legal",
     "privacy": "Privacy",
     "terms": "Terms",
     "reviewPolicy": "Review policy",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "noPaidRanking": "No paid ranking. Reviews stay first."
   },
   "search": {
+    "kicker": "Directory search",
     "title": "Search results",
     "resultsCount": "{count, plural, =0 {No companies} =1 {1 company} other {# companies}}",
     "noResults": "No companies match your search",
@@ -59,7 +78,8 @@
     "relevance": "Relevance",
     "rating": "Highest rated",
     "reviews": "Most reviewed",
-    "newest": "Newest"
+    "newest": "Newest",
+    "noPaidRanking": "No paid ranking"
   },
   "company": {
     "verified": "Verified",
@@ -103,10 +123,13 @@
     "reported": "Reported — thank you"
   },
   "categories": {
+    "kicker": "Services",
     "title": "Browse categories",
-    "subtitle": "Find the right service for the job."
+    "subtitle": "Find the right service for the job.",
+    "count": "{count, plural, =1 {1 category} other {# categories}}"
   },
   "auth": {
+    "kicker": "Account",
     "signInTitle": "Welcome back",
     "signInSubtitle": "Sign in to write reviews and manage your account.",
     "signUpTitle": "Create your account",
@@ -146,6 +169,7 @@
     "responsePlaceholder": "Write a public response to this review…"
   },
   "admin": {
+    "kicker": "Operations",
     "title": "Admin",
     "pendingCompanies": "Pending companies",
     "pendingClaims": "Pending claims",
@@ -170,6 +194,8 @@
     "generating": "Generating…"
   },
   "business": {
+    "kicker": "Business tools",
+    "formKicker": "Business profile",
     "title": "For businesses",
     "subtitle": "Claim or list your business on RePro, respond to reviews and build trust with customers across Luxembourg.",
     "listCta": "List your business",
@@ -229,6 +255,7 @@
     "accept": "Accept all"
   },
   "account": {
+    "kicker": "Privacy controls",
     "title": "Your account",
     "signedInAs": "Signed in as",
     "exportTitle": "Export your data",
@@ -240,6 +267,8 @@
     "deleteConfirm": "Delete your account and all your data? This cannot be undone."
   },
   "compare": {
+    "kicker": "Decision table",
+    "emptyKicker": "Comparison",
     "title": "Compare businesses",
     "select": "Compare",
     "compareCta": "Compare",
@@ -249,7 +278,9 @@
     "reviewsCount": "Reviews",
     "verified": "Verified badge",
     "pickPrompt": "Pick at least two businesses from search results to compare them side by side.",
-    "backToSearch": "Go to search"
+    "backToSearch": "Go to search",
+    "yes": "Yes",
+    "no": "No"
   },
   "ai": {
     "title": "What customers say",

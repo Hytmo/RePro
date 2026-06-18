@@ -16,8 +16,9 @@ export default async function AccountPage({params}: {params: Promise<{locale: st
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
-      <h1 className="text-2xl font-bold tracking-tight text-ink">{t('title')}</h1>
-      <p className="mt-2 text-ink-soft">{t('signedInAs')} <span className="font-medium text-ink">{profile?.display_name || user!.email}</span></p>
+      <span className="repro-kicker">{t('kicker')}</span>
+      <h1 className="mt-4 text-3xl font-black tracking-tight text-ink">{t('title')}</h1>
+      <p className="mt-2 text-ink-soft">{t('signedInAs')} <span className="font-bold text-ink">{profile?.display_name || user!.email}</span></p>
       <AccountActions
         userId={user!.id}
         labels={{

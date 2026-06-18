@@ -7,9 +7,10 @@ export default async function SignInPage({params}: {params: Promise<{locale: str
   const t = await getTranslations('auth');
   return (
     <div className="mx-auto max-w-md px-4 py-16 sm:px-6">
-      <h1 className="text-2xl font-bold tracking-tight text-ink">{t('signInTitle')}</h1>
-      <p className="mt-1 text-sm text-muted">{t('signInSubtitle')}</p>
-      <div className="mt-6 rounded-2xl border border-border bg-background p-6 shadow-sm">
+      <span className="repro-kicker">{t('kicker')}</span>
+      <h1 className="mt-4 text-3xl font-black tracking-tight text-ink">{t('signInTitle')}</h1>
+      <p className="mt-2 text-sm leading-6 text-muted">{t('signInSubtitle')}</p>
+      <div className="repro-card mt-6 rounded-lg p-6">
         <AuthForm
           mode="signin"
           labels={{

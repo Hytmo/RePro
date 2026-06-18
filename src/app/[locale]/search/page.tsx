@@ -26,9 +26,21 @@ export default async function SearchPage({
   const catOptions = categories.map((c: any) => ({slug: c.slug, label: localizedName(c.name, locale)}));
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="text-2xl font-bold tracking-tight text-ink">{t('title')}</h1>
-      <p className="mt-1 text-sm text-muted">{t('resultsCount', {count: results.length})}</p>
+    <div className="shell py-10">
+      <div className="flex flex-col justify-between gap-4 border-b border-border pb-6 md:flex-row md:items-end">
+        <div>
+          <span className="repro-kicker">{t('kicker')}</span>
+          <h1 className="mt-4 text-3xl font-black tracking-tight text-ink md:text-4xl">
+            {t('title')}
+          </h1>
+          <p className="mt-2 text-sm font-medium text-muted">
+            {t('resultsCount', {count: results.length})}
+          </p>
+        </div>
+        <div className="rounded-lg bg-ink px-4 py-3 text-sm font-bold text-white">
+          {t('noPaidRanking')}
+        </div>
+      </div>
 
       <div className="mt-6">
         <SearchFilters
@@ -39,7 +51,7 @@ export default async function SearchPage({
       </div>
 
       {results.length === 0 ? (
-        <div className="mt-12 rounded-2xl border border-dashed border-border bg-surface px-6 py-16 text-center">
+        <div className="mt-12 rounded-lg border border-dashed border-border bg-surface px-6 py-16 text-center">
           <p className="font-medium text-ink">{t('noResults')}</p>
           <p className="mt-1 text-sm text-muted">{t('noResultsHint')}</p>
         </div>

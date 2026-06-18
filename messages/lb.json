@@ -14,15 +14,31 @@
     "search": "Sichen",
     "signUp": "Registréieren",
     "signOut": "Ofmellen",
-    "admin": "Admin"
+    "admin": "Admin",
+    "tagline": "Bewäertunge fir Lëtzebuerg"
   },
   "home": {
+    "kicker": "Bewäertungsintelligenz fir Lëtzebuerg",
     "heroTitle": "Fann Lëtzebuerger Betriber, deenen s du vertraue kanns",
     "heroSubtitle": "Richteg, verifizéiert Bewäertunge vu lokalen Déngschtleeschter — bewäert no deem wat zielt: Qualitéit, Präis-Leeschtung, Kommunikatioun a méi.",
     "searchPlaceholder": "No engem Service oder Betrib sichen…",
     "searchLocationPlaceholder": "Uertschaft",
     "searchButton": "Sichen",
+    "serviceLabel": "Service",
+    "locationLabel": "Gemeng",
     "popularCategories": "Beléifte Kategorien",
+    "snapshotLabel": "Vertrauens-Iwwerbléck",
+    "snapshotTitle": "Verifizéiert lokal Servicer",
+    "liveMvp": "Live MVP",
+    "topMatches": "Top Resultater",
+    "sampleReviews": "Beispillbewäertungen",
+    "paidRankBoosts": "Bezuelt Ranking-Boosts",
+    "reviewCount": "{count, plural, =1 {1 Bewäertung} other {# Bewäertungen}}",
+    "categoryHeading": "Sich no der Aarbecht déi s du brauchs",
+    "viewAllCategories": "All Kategorien uweisen",
+    "exploreKicker": "Elo entdecken",
+    "featuredHeading": "Staark bewäert Betriber",
+    "seeSearch": "Zur Sich",
     "comingSoon": "Mir fänken eréischt un — Sich a komplett Profiler kommen geschwënn.",
     "valueProps": {
       "verifiedTitle": "Verifizéiert Bewäertungen",
@@ -35,15 +51,18 @@
   },
   "footer": {
     "tagline": "Éierlech Bewäertunge vu Lëtzebuerger Betriber.",
+    "description": "E review-first Verzeechnes fir Service-Decisiounen zu Lëtzebuerg: kloer Bewäertungen, verifizéiert Signaler, fairen Dialog mat Betriber a kee bezuelte Ranking-Virdeel.",
     "product": "Produit",
     "company": "Entreprise",
     "legal": "Legal",
     "privacy": "Dateschutz",
     "terms": "Konditiounen",
     "reviewPolicy": "Bewäertungsrichtlinn",
-    "rights": "All Rechter virbehalen."
+    "rights": "All Rechter virbehalen.",
+    "noPaidRanking": "Kee bezuelte Ranking. Bewäertunge bleiwen éischt."
   },
   "search": {
+    "kicker": "Verzeechnes-Sich",
     "title": "Sichresultater",
     "resultsCount": "{count, plural, =0 {Keng Betriber} =1 {1 Betrib} other {# Betriber}}",
     "noResults": "Keng Betriber fonnt",
@@ -59,7 +78,8 @@
     "relevance": "Relevanz",
     "rating": "Bescht bewäert",
     "reviews": "Meescht Bewäertungen",
-    "newest": "Nei"
+    "newest": "Nei",
+    "noPaidRanking": "Kee bezuelte Ranking"
   },
   "company": {
     "verified": "Verifizéiert",
@@ -103,10 +123,13 @@
     "reported": "Gemellt — merci"
   },
   "categories": {
+    "kicker": "Servicer",
     "title": "Kategorien duerchsichen",
-    "subtitle": "Fann de richtege Service fir d'Aarbecht."
+    "subtitle": "Fann de richtege Service fir d'Aarbecht.",
+    "count": "{count, plural, =1 {1 Kategorie} other {# Kategorien}}"
   },
   "auth": {
+    "kicker": "Kont",
     "signInTitle": "Wëllkomm zréck",
     "signInSubtitle": "Mell dech un fir Bewäertungen ze schreiwen an däi Kont ze verwalten.",
     "signUpTitle": "Kont erstellen",
@@ -146,6 +169,7 @@
     "responsePlaceholder": "Schreif eng ëffentlech Äntwert…"
   },
   "admin": {
+    "kicker": "Operatiounen",
     "title": "Admin",
     "pendingCompanies": "Pending companies",
     "pendingClaims": "Pending claims",
@@ -170,6 +194,8 @@
     "generating": "Generating…"
   },
   "business": {
+    "kicker": "Business-Tools",
+    "formKicker": "Betribsprofil",
     "title": "Fir Betriber",
     "subtitle": "Beanspruch oder lëscht däi Betrib op RePro, äntwer op Bewäertungen a bau Vertrauen op.",
     "listCta": "Betrib androen",
@@ -229,6 +255,7 @@
     "accept": "Alleguer akzeptéieren"
   },
   "account": {
+    "kicker": "Dateschutz-Kontrollen",
     "title": "Däi Kont",
     "signedInAs": "Ugemellt als",
     "exportTitle": "Donnéeën exportéieren",
@@ -240,6 +267,8 @@
     "deleteConfirm": "Däi Kont an all deng Donnéeë läschen? Dat kann net réckgängeg gemaach ginn."
   },
   "compare": {
+    "kicker": "Decisiounstabell",
+    "emptyKicker": "Verglach",
     "title": "Betriber vergläichen",
     "select": "Vergläichen",
     "compareCta": "Vergläichen",
@@ -249,7 +278,9 @@
     "reviewsCount": "Bewäertungen",
     "verified": "Verifizéierte Badge",
     "pickPrompt": "Wiel mindestens zwee Betriber aus de Sichresultater.",
-    "backToSearch": "Op d'Sich goen"
+    "backToSearch": "Op d'Sich goen",
+    "yes": "Jo",
+    "no": "Nee"
   },
   "ai": {
     "title": "Wat Clienten soen",

@@ -14,15 +14,31 @@
     "search": "Suchen",
     "signUp": "Registrieren",
     "signOut": "Abmelden",
-    "admin": "Admin"
+    "admin": "Admin",
+    "tagline": "Bewertungen für Luxemburg"
   },
   "home": {
+    "kicker": "Bewertungsintelligenz für Luxemburg",
     "heroTitle": "Finden Sie Luxemburger Unternehmen, denen Sie vertrauen können",
     "heroSubtitle": "Echte, verifizierte Bewertungen lokaler Dienstleister — bewertet nach dem, worauf es ankommt: Qualität, Preis-Leistung, Kommunikation und mehr.",
     "searchPlaceholder": "Dienstleistung oder Unternehmen suchen…",
     "searchLocationPlaceholder": "Ort",
     "searchButton": "Suchen",
+    "serviceLabel": "Service",
+    "locationLabel": "Gemeinde",
     "popularCategories": "Beliebte Kategorien",
+    "snapshotLabel": "Vertrauensüberblick",
+    "snapshotTitle": "Verifizierte lokale Services",
+    "liveMvp": "Live MVP",
+    "topMatches": "Top-Treffer",
+    "sampleReviews": "Beispielbewertungen",
+    "paidRankBoosts": "Gekaufte Ranking-Boosts",
+    "reviewCount": "{count, plural, =1 {1 Bewertung} other {# Bewertungen}}",
+    "categoryHeading": "Nach der benötigten Arbeit suchen",
+    "viewAllCategories": "Alle Kategorien ansehen",
+    "exploreKicker": "Jetzt entdecken",
+    "featuredHeading": "Sehr gut bewertete Unternehmen",
+    "seeSearch": "Zur Suche",
     "comingSoon": "Wir fangen gerade erst an — Suche und vollständige Profile folgen in Kürze.",
     "valueProps": {
       "verifiedTitle": "Verifizierte Bewertungen",
@@ -35,15 +51,18 @@
   },
   "footer": {
     "tagline": "Ehrliche Bewertungen von Luxemburger Unternehmen.",
+    "description": "Ein bewertungsorientiertes Verzeichnis für Entscheidungen in Luxemburg: klare Ratings, verifizierte Signale, fairer Dialog mit Unternehmen und keine gekauften Ranking-Vorteile.",
     "product": "Produkt",
     "company": "Unternehmen",
     "legal": "Rechtliches",
     "privacy": "Datenschutz",
     "terms": "AGB",
     "reviewPolicy": "Bewertungsrichtlinie",
-    "rights": "Alle Rechte vorbehalten."
+    "rights": "Alle Rechte vorbehalten.",
+    "noPaidRanking": "Kein bezahltes Ranking. Bewertungen bleiben zuerst."
   },
   "search": {
+    "kicker": "Verzeichnissuche",
     "title": "Suchergebnisse",
     "resultsCount": "{count, plural, =0 {Keine Unternehmen} =1 {1 Unternehmen} other {# Unternehmen}}",
     "noResults": "Keine Unternehmen gefunden",
@@ -59,7 +78,8 @@
     "relevance": "Relevanz",
     "rating": "Beste Bewertung",
     "reviews": "Meiste Bewertungen",
-    "newest": "Neueste"
+    "newest": "Neueste",
+    "noPaidRanking": "Kein bezahltes Ranking"
   },
   "company": {
     "verified": "Verifiziert",
@@ -103,10 +123,13 @@
     "reported": "Gemeldet — danke"
   },
   "categories": {
+    "kicker": "Services",
     "title": "Kategorien durchsuchen",
-    "subtitle": "Finden Sie den richtigen Service für die Aufgabe."
+    "subtitle": "Finden Sie den richtigen Service für die Aufgabe.",
+    "count": "{count, plural, =1 {1 Kategorie} other {# Kategorien}}"
   },
   "auth": {
+    "kicker": "Konto",
     "signInTitle": "Willkommen zurück",
     "signInSubtitle": "Melden Sie sich an, um Bewertungen zu schreiben und Ihr Konto zu verwalten.",
     "signUpTitle": "Konto erstellen",
@@ -146,6 +169,7 @@
     "responsePlaceholder": "Schreiben Sie eine öffentliche Antwort…"
   },
   "admin": {
+    "kicker": "Betrieb",
     "title": "Admin",
     "pendingCompanies": "Ausstehende Unternehmen",
     "pendingClaims": "Ausstehende Ansprüche",
@@ -170,6 +194,8 @@
     "generating": "Wird erstellt…"
   },
   "business": {
+    "kicker": "Business-Tools",
+    "formKicker": "Unternehmensprofil",
     "title": "Für Unternehmen",
     "subtitle": "Beanspruchen oder listen Sie Ihr Unternehmen auf RePro, antworten Sie auf Bewertungen und bauen Sie Vertrauen auf.",
     "listCta": "Unternehmen eintragen",
@@ -229,6 +255,7 @@
     "accept": "Alle akzeptieren"
   },
   "account": {
+    "kicker": "Datenschutzkontrollen",
     "title": "Ihr Konto",
     "signedInAs": "Angemeldet als",
     "exportTitle": "Daten exportieren",
@@ -240,6 +267,8 @@
     "deleteConfirm": "Ihr Konto und alle Daten löschen? Dies kann nicht rückgängig gemacht werden."
   },
   "compare": {
+    "kicker": "Entscheidungstabelle",
+    "emptyKicker": "Vergleich",
     "title": "Unternehmen vergleichen",
     "select": "Vergleichen",
     "compareCta": "Vergleichen",
@@ -249,7 +278,9 @@
     "reviewsCount": "Bewertungen",
     "verified": "Verifiziertes Abzeichen",
     "pickPrompt": "Wählen Sie mindestens zwei Unternehmen aus den Suchergebnissen.",
-    "backToSearch": "Zur Suche"
+    "backToSearch": "Zur Suche",
+    "yes": "Ja",
+    "no": "Nein"
   },
   "ai": {
     "title": "Was Kunden sagen",

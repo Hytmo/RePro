@@ -5,10 +5,9 @@ import {routing} from './i18n/routing';
 
 const intlMiddleware = createMiddleware(routing);
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const response = intlMiddleware(request);
 
-  // Refresh the Supabase auth session and sync cookies onto the i18n response.
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -25,6 +24,7 @@ export async function middleware(request: NextRequest) {
       }
     }
   );
+
   await supabase.auth.getUser();
   return response;
 }

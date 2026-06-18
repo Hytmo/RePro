@@ -2,14 +2,15 @@
 
 import {useLocale} from 'next-intl';
 import {useTransition} from 'react';
+import {ChevronDown} from 'lucide-react';
 import {usePathname, useRouter} from '@/i18n/navigation';
 import {routing} from '@/i18n/routing';
 
 const fullNames: Record<string, string> = {
   en: 'English',
   de: 'Deutsch',
-  fr: 'Français',
-  lb: 'Lëtzebuergesch'
+  fr: 'Fran\u00e7ais',
+  lb: 'L\u00ebtzebuergesch'
 };
 
 export default function LocaleSwitcher() {
@@ -31,7 +32,7 @@ export default function LocaleSwitcher() {
         value={locale}
         disabled={isPending}
         onChange={(e) => onSelect(e.target.value)}
-        className="appearance-none rounded-lg border border-border bg-background py-2 pl-3 pr-8 text-sm font-medium text-ink-soft transition hover:border-brand-400 focus:outline-none focus:ring-2 focus:ring-brand-500 disabled:opacity-60"
+        className="h-10 appearance-none rounded-full border border-border bg-white pl-3 pr-8 text-sm font-bold text-ink-soft transition hover:border-brand-300 focus:outline-none focus:ring-2 focus:ring-brand-300 disabled:opacity-60"
       >
         {routing.locales.map((l) => (
           <option key={l} value={l}>
@@ -39,9 +40,7 @@ export default function LocaleSwitcher() {
           </option>
         ))}
       </select>
-      <span className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-muted">
-        ▾
-      </span>
+      <ChevronDown className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-muted" aria-hidden="true" />
     </div>
   );
 }

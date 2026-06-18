@@ -40,7 +40,7 @@ export async function searchCompanies(f: CompanyFilters) {
     case 'rating': query = query.order('rating_avg', {ascending: false}); break;
     case 'reviews': query = query.order('rating_count', {ascending: false}); break;
     case 'newest': query = query.order('created_at', {ascending: false}); break;
-    default: query = query.order('is_badged', {ascending: false}).order('rating_avg', {ascending: false});
+    default: query = query.order('rating_avg', {ascending: false}).order('rating_count', {ascending: false});
   }
   const {data} = await query.limit(60);
   return data ?? [];

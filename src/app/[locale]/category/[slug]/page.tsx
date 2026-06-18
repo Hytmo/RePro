@@ -24,10 +24,15 @@ export default async function CategoryPage({
   const results = await searchCompanies({category: slug, sort: 'rating'});
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-      <h1 className="text-2xl font-bold tracking-tight text-ink">{localizedName(cat.name, locale)}</h1>
-      <p className="mt-1 text-sm text-muted">{t('resultsCount', {count: results.length})}</p>
-      <div className="mt-6 grid gap-4 sm:grid-cols-2">
+    <div className="shell py-10">
+      <div className="border-b border-border pb-6">
+        <span className="repro-kicker">Category</span>
+        <h1 className="mt-4 text-3xl font-black tracking-tight text-ink sm:text-4xl">
+          {localizedName(cat.name, locale)}
+        </h1>
+        <p className="mt-2 text-sm font-medium text-muted">{t('resultsCount', {count: results.length})}</p>
+      </div>
+      <div className="mt-6 grid gap-4 lg:grid-cols-2">
         {results.map((c: any) => (
           <CompanyCard key={c.id} company={c} locale={locale} badgeLabel={tc('verified')} />
         ))}

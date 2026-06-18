@@ -5,8 +5,18 @@ import {createClient} from '@/lib/supabase/client';
 import {Link} from '@/i18n/navigation';
 
 type Labels = {
-  getInTouch: string; contact: string; quote: string; message: string; messagePlaceholder: string;
-  email: string; consent: string; send: string; sent: string; signInPrompt: string; signInCta: string; consentRequired: string;
+  getInTouch: string;
+  contact: string;
+  quote: string;
+  message: string;
+  messagePlaceholder: string;
+  email: string;
+  consent: string;
+  send: string;
+  sent: string;
+  signInPrompt: string;
+  signInCta: string;
+  consentRequired: string;
 };
 
 export default function LeadForm({
@@ -33,18 +43,23 @@ export default function LeadForm({
 
   if (!signedIn) {
     return (
-      <div className="rounded-2xl border border-border bg-background p-6">
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">{labels.getInTouch}</h2>
-        <p className="text-sm text-ink-soft">{labels.signInPrompt}</p>
-        <Link href="/sign-in" className="mt-3 inline-block rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">{labels.signInCta}</Link>
+      <div className="repro-card rounded-lg p-6">
+        <h2 className="text-xs font-black uppercase text-muted">{labels.getInTouch}</h2>
+        <p className="mt-3 text-sm leading-relaxed text-ink-soft">{labels.signInPrompt}</p>
+        <Link
+          href="/sign-in"
+          className="mt-4 inline-block rounded-full bg-ink px-4 py-2 text-sm font-black text-white transition hover:bg-brand-700"
+        >
+          {labels.signInCta}
+        </Link>
       </div>
     );
   }
 
   if (ok) {
     return (
-      <div className="rounded-2xl border border-brand-200 bg-brand-50 p-6">
-        <p className="text-sm font-medium text-brand-800">{labels.sent}</p>
+      <div className="rounded-lg border border-mint-500/25 bg-mint-500/10 p-6">
+        <p className="text-sm font-bold text-mint-600">{labels.sent}</p>
       </div>
     );
   }
@@ -57,32 +72,86 @@ export default function LeadForm({
       return;
     }
     setBusy(true);
-    const {data, error} = await supabase.from('leads').insert({company_id: companyId, user_id: userId, type, message, contact_email: email || null, consent}).select('id').single();
+    const {data, error} = await supabase
+      .from('leads')
+      .insert({
+        company_id: companyId,
+        user_id: userId,
+        type,
+        message,
+        contact_email: email || null,
+        consent
+      })
+      .select('id')
+      .single();
     setBusy(false);
     if (error) setError(error.message);
     else {
       setOk(true);
-      if (data?.id) supabase.functions.invoke('notify-lead', {body: {lead_id: data.id}}).catch(() => {});
+      if (data?.id) {
+        supabase.functions.invoke('notify-lead', {body: {lead_id: data.id}}).catch(() => {});
+      }
     }
   }
 
-  const input = 'w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-500';
+  const input =
+    'w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm outline-none transition placeholder:text-muted focus:ring-2 focus:ring-brand-300';
 
   return (
-    <form onSubmit={submit} className="rounded-2xl border border-border bg-background p-6">
-      <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted">{labels.getInTouch}</h2>
-      <div className="mb-3 flex gap-2">
-        <button type="button" onClick={() => setType('contact')} className={`rounded-lg px-3 py-1.5 text-xs font-semibold ${type === 'contact' ? 'bg-brand-600 text-white' : 'border border-border text-ink-soft'}`}>{labels.contact}</button>
-        <button type="button" onClick={() => setType('quote')} className={`rounded-lg px-3 py-1.5 text-xs font-semibold ${type === 'quote' ? 'bg-brand-600 text-white' : 'border border-border text-ink-soft'}`}>{labels.quote}</button>
+    <form onSubmit={submit} className="repro-card rounded-lg p-6">
+      <h2 className="text-xs font-black uppercase text-muted">{labels.getInTouch}</h2>
+      <div className="mt-4 grid grid-cols-2 gap-2 rounded-full bg-surface p-1">
+        <button
+          type="button"
+          onClick={() => setType('contact')}
+          className={`rounded-full px-3 py-2 text-xs font-black transition ${
+            type === 'contact' ? 'bg-white text-ink shadow-sm' : 'text-muted hover:text-ink'
+          }`}
+        >
+          {labels.contact}
+        </button>
+        <button
+          type="button"
+          onClick={() => setType('quote')}
+          className={`rounded-full px-3 py-2 text-xs font-black transition ${
+            type === 'quote' ? 'bg-white text-ink shadow-sm' : 'text-muted hover:text-ink'
+          }`}
+        >
+          {labels.quote}
+        </button>
       </div>
-      <textarea className={`${input} min-h-[90px]`} value={message} onChange={(e) => setMessage(e.target.value)} placeholder={labels.messagePlaceholder} required maxLength={2000} />
-      <input className={`${input} mt-3`} type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={labels.email} />
-      <label className="mt-3 flex items-start gap-2 text-xs text-ink-soft">
-        <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5 h-4 w-4 rounded border-border text-brand-600" />
+      <textarea
+        className={`${input} mt-4 min-h-[110px]`}
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder={labels.messagePlaceholder}
+        required
+        maxLength={2000}
+      />
+      <input
+        className={`${input} mt-3`}
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder={labels.email}
+      />
+      <label className="mt-3 flex items-start gap-2 text-xs leading-relaxed text-ink-soft">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5 h-4 w-4 rounded border-border text-brand-600"
+        />
         {labels.consent}
       </label>
       {error && <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
-      <button type="submit" disabled={busy} className="mt-4 w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-60">{labels.send}</button>
+      <button
+        type="submit"
+        disabled={busy}
+        className="mt-4 w-full rounded-full bg-ink px-4 py-3 text-sm font-black text-white transition hover:bg-brand-700 disabled:opacity-60"
+      >
+        {labels.send}
+      </button>
     </form>
   );
 }

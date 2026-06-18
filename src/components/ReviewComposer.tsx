@@ -53,9 +53,9 @@ export default function ReviewComposer({
 
   if (!signedIn) {
     return (
-      <div className="rounded-2xl border border-dashed border-border bg-surface px-5 py-6 text-center">
+      <div className="rounded-lg border border-dashed border-border bg-surface px-5 py-6 text-center">
         <p className="text-ink-soft">{labels.signInPrompt}</p>
-        <Link href="/sign-in" className="mt-2 inline-block rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">
+        <Link href="/sign-in" className="mt-3 inline-block rounded-full bg-ink px-4 py-2 text-sm font-black text-white hover:bg-brand-700">
           {labels.signInCta}
         </Link>
       </div>
@@ -93,11 +93,11 @@ export default function ReviewComposer({
     }
   }
 
-  const input = 'w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-500';
+  const input = 'w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm outline-none transition placeholder:text-muted focus:ring-2 focus:ring-brand-300';
 
   return (
-    <form onSubmit={submit} className="rounded-2xl border border-border bg-background p-5">
-      <h3 className="font-semibold text-ink">{existing ? labels.editTitle : labels.writeTitle}</h3>
+    <form onSubmit={submit} className="repro-card rounded-lg p-5">
+      <h3 className="font-black text-ink">{existing ? labels.editTitle : labels.writeTitle}</h3>
       <div className="mt-4 space-y-2.5">
         <StarInput label={labels.quality} value={q} onChange={setQ} />
         <StarInput label={labels.value} value={v} onChange={setV} />
@@ -109,16 +109,16 @@ export default function ReviewComposer({
         {labels.recommend}
       </label>
       <div className="mt-4">
-        <label className="mb-1 block text-sm font-medium text-ink-soft">{labels.reviewTitle}</label>
+        <label className="mb-1 block text-sm font-bold text-ink-soft">{labels.reviewTitle}</label>
         <input className={input} value={title} onChange={(e) => setTitle(e.target.value)} placeholder={labels.reviewTitlePlaceholder} maxLength={120} />
       </div>
       <div className="mt-3">
-        <label className="mb-1 block text-sm font-medium text-ink-soft">{labels.body}</label>
+        <label className="mb-1 block text-sm font-bold text-ink-soft">{labels.body}</label>
         <textarea className={`${input} min-h-[110px]`} value={body} onChange={(e) => setBody(e.target.value)} placeholder={labels.bodyPlaceholder} required maxLength={5000} />
       </div>
       {error && <p className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">{error}</p>}
       {ok && <p className="mt-3 rounded-lg bg-brand-50 px-3 py-2 text-sm text-brand-800">{labels.posted}</p>}
-      <button type="submit" disabled={loading} className="mt-4 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-60">
+      <button type="submit" disabled={loading} className="mt-4 rounded-full bg-ink px-5 py-2.5 text-sm font-black text-white transition hover:bg-brand-700 disabled:opacity-60">
         {existing ? labels.update : labels.submit}
       </button>
     </form>

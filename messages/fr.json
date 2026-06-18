@@ -14,15 +14,31 @@
     "search": "Rechercher",
     "signUp": "S'inscrire",
     "signOut": "Se déconnecter",
-    "admin": "Admin"
+    "admin": "Admin",
+    "tagline": "Avis pour le Luxembourg"
   },
   "home": {
+    "kicker": "Intelligence d'avis au Luxembourg",
     "heroTitle": "Trouvez des entreprises luxembourgeoises de confiance",
     "heroSubtitle": "De vrais avis vérifiés sur les prestataires locaux — évalués sur ce qui compte : qualité, rapport qualité-prix, communication et plus encore.",
     "searchPlaceholder": "Rechercher un service ou une entreprise…",
     "searchLocationPlaceholder": "Localité",
     "searchButton": "Rechercher",
+    "serviceLabel": "Service",
+    "locationLabel": "Commune",
     "popularCategories": "Catégories populaires",
+    "snapshotLabel": "Aperçu confiance",
+    "snapshotTitle": "Services locaux vérifiés",
+    "liveMvp": "MVP en ligne",
+    "topMatches": "Meilleurs résultats",
+    "sampleReviews": "Avis d'exemple",
+    "paidRankBoosts": "Boosts de classement payants",
+    "reviewCount": "{count, plural, =1 {1 avis} other {# avis}}",
+    "categoryHeading": "Parcourez selon le service recherché",
+    "viewAllCategories": "Voir toutes les catégories",
+    "exploreKicker": "Explorer",
+    "featuredHeading": "Entreprises très bien notées",
+    "seeSearch": "Voir la recherche",
     "comingSoon": "Nous débutons à peine — la recherche et les profils complets arrivent bientôt.",
     "valueProps": {
       "verifiedTitle": "Avis vérifiés",
@@ -35,15 +51,18 @@
   },
   "footer": {
     "tagline": "Avis honnêtes sur les entreprises luxembourgeoises.",
+    "description": "Un annuaire centré sur les avis pour choisir un service au Luxembourg : notes claires, signaux vérifiés, dialogue équitable avec les entreprises et aucun raccourci payant dans le classement.",
     "product": "Produit",
     "company": "Entreprise",
     "legal": "Mentions légales",
     "privacy": "Confidentialité",
     "terms": "Conditions",
     "reviewPolicy": "Politique d'avis",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "noPaidRanking": "Pas de classement payant. Les avis restent prioritaires."
   },
   "search": {
+    "kicker": "Recherche dans l'annuaire",
     "title": "Résultats de recherche",
     "resultsCount": "{count, plural, =0 {Aucune entreprise} =1 {1 entreprise} other {# entreprises}}",
     "noResults": "Aucune entreprise trouvée",
@@ -59,7 +78,8 @@
     "relevance": "Pertinence",
     "rating": "Mieux notées",
     "reviews": "Plus d'avis",
-    "newest": "Plus récentes"
+    "newest": "Plus récentes",
+    "noPaidRanking": "Pas de classement payant"
   },
   "company": {
     "verified": "Vérifié",
@@ -103,10 +123,13 @@
     "reported": "Signalé — merci"
   },
   "categories": {
+    "kicker": "Services",
     "title": "Parcourir les catégories",
-    "subtitle": "Trouvez le bon service pour le travail."
+    "subtitle": "Trouvez le bon service pour le travail.",
+    "count": "{count, plural, =1 {1 catégorie} other {# catégories}}"
   },
   "auth": {
+    "kicker": "Compte",
     "signInTitle": "Bon retour",
     "signInSubtitle": "Connectez-vous pour rédiger des avis et gérer votre compte.",
     "signUpTitle": "Créer votre compte",
@@ -146,6 +169,7 @@
     "responsePlaceholder": "Rédigez une réponse publique…"
   },
   "admin": {
+    "kicker": "Opérations",
     "title": "Admin",
     "pendingCompanies": "Entreprises en attente",
     "pendingClaims": "Revendications en attente",
@@ -170,6 +194,8 @@
     "generating": "Génération…"
   },
   "business": {
+    "kicker": "Outils entreprise",
+    "formKicker": "Profil entreprise",
     "title": "Pour les entreprises",
     "subtitle": "Revendiquez ou inscrivez votre entreprise sur RePro, répondez aux avis et gagnez la confiance des clients.",
     "listCta": "Inscrire mon entreprise",
@@ -229,6 +255,7 @@
     "accept": "Tout accepter"
   },
   "account": {
+    "kicker": "Contrôles de confidentialité",
     "title": "Votre compte",
     "signedInAs": "Connecté en tant que",
     "exportTitle": "Exporter vos données",
@@ -240,6 +267,8 @@
     "deleteConfirm": "Supprimer votre compte et toutes vos données ? Action irréversible."
   },
   "compare": {
+    "kicker": "Tableau de décision",
+    "emptyKicker": "Comparaison",
     "title": "Comparer des entreprises",
     "select": "Comparer",
     "compareCta": "Comparer",
@@ -249,7 +278,9 @@
     "reviewsCount": "Avis",
     "verified": "Badge vérifié",
     "pickPrompt": "Choisissez au moins deux entreprises dans les résultats.",
-    "backToSearch": "Aller à la recherche"
+    "backToSearch": "Aller à la recherche",
+    "yes": "Oui",
+    "no": "Non"
   },
   "ai": {
     "title": "Ce que disent les clients",

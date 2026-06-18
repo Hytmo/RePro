@@ -17,37 +17,48 @@ export default function CompanyCard({
     .map((cc: any) => cc.categories)
     .filter(Boolean);
   const topCat = cats[0];
+
   return (
     <Link
       href={`/company/${company.slug}`}
-      className="group block rounded-2xl border border-border bg-background p-5 transition hover:border-brand-300 hover:shadow-md"
+      className="group relative block overflow-hidden rounded-lg border border-border bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-900/10"
     >
-      <div className="flex items-start gap-3">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-brand-100 font-semibold text-brand-700">
+      <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,var(--color-lux-500),var(--color-brand-500),var(--color-mint-500))] opacity-0 transition group-hover:opacity-100" />
+      <div className="flex items-start gap-4">
+        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-md bg-ink font-black text-white">
+          <span className="absolute inset-x-0 top-0 h-1 bg-lux-500" />
           {company.logo_url ? (
-            <img src={company.logo_url} alt="" className="h-12 w-12 object-cover" />
+            <img src={company.logo_url} alt="" className="h-14 w-14 object-cover" />
           ) : (
             initials(company.name)
           )}
         </div>
+
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <h3 className="truncate font-semibold text-ink group-hover:text-brand-700">
-              {company.name}
-            </h3>
+          <div className="flex min-w-0 items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h3 className="truncate text-base font-black text-ink group-hover:text-brand-700">
+                {company.name}
+              </h3>
+              <p className="mt-1 truncate text-sm font-medium text-muted">
+                {topCat ? localizedName(topCat.name, locale) : ''}
+                {company.city ? ` - ${company.city}` : ''}
+              </p>
+            </div>
             {company.is_badged && <VerifiedBadge label={badgeLabel} />}
           </div>
-          <p className="mt-0.5 truncate text-sm text-muted">
-            {topCat ? localizedName(topCat.name, locale) : ''}
-            {company.city ? ` · ${company.city}` : ''}
-          </p>
-          <div className="mt-2">
+
+          <div className="mt-4 flex items-center justify-between gap-3">
             <StarRating value={Number(company.rating_avg)} count={company.rating_count} showValue />
+            <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-bold text-ink-soft">
+              {Math.round(Number(company.recommend_pct ?? 0))}% rec.
+            </span>
           </div>
         </div>
       </div>
+
       {company.description && (
-        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-ink-soft">
+        <p className="mt-4 line-clamp-2 text-sm leading-relaxed text-ink-soft">
           {company.description}
         </p>
       )}

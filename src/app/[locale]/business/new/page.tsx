@@ -16,9 +16,10 @@ export default async function NewBusinessPage({params}: {params: Promise<{locale
 
   return (
     <div className="mx-auto max-w-xl px-4 py-12 sm:px-6">
-      <h1 className="text-2xl font-bold tracking-tight text-ink">{t('newTitle')}</h1>
-      <p className="mt-1 text-sm text-muted">{t('newSubtitle')}</p>
-      <div className="mt-6 rounded-2xl border border-border bg-background p-6 shadow-sm">
+      <span className="repro-kicker">{t('formKicker')}</span>
+      <h1 className="mt-4 text-3xl font-black tracking-tight text-ink">{t('newTitle')}</h1>
+      <p className="mt-2 text-sm leading-6 text-muted">{t('newSubtitle')}</p>
+      <div className="repro-card mt-6 rounded-lg p-6">
         <BusinessForm
           userId={user!.id}
           categories={categories}

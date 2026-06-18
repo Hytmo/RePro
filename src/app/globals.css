@@ -1,29 +1,35 @@
 @import "tailwindcss";
 
-/* RePro design tokens (Tailwind v4). Brand: modern indigo. */
+/* RePro design tokens (Tailwind v4). Civic, premium, Luxembourg-aware. */
 @theme {
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-300: #a5b4fc;
-  --color-brand-400: #818cf8;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
+  --color-brand-50: #f0f3ff;
+  --color-brand-100: #dfe6ff;
+  --color-brand-200: #bdc9ff;
+  --color-brand-300: #91a2ff;
+  --color-brand-400: #6676ff;
+  --color-brand-500: #4654f0;
+  --color-brand-600: #333bd1;
+  --color-brand-700: #282ea8;
+  --color-brand-800: #232984;
+  --color-brand-900: #202566;
 
-  --color-accent-400: #fbbf24;
-  --color-accent-500: #f59e0b;
-  --color-accent-600: #d97706;
+  --color-lux-500: #e3344f;
+  --color-lux-600: #c91f3d;
+  --color-mint-500: #0fbc9b;
+  --color-mint-600: #0a8f78;
 
-  --color-background: #ffffff;
-  --color-surface: #f8fafc;
-  --color-surface-2: #f1f5f9;
-  --color-border: #e2e8f0;
-  --color-ink: #0f172a;
-  --color-ink-soft: #334155;
-  --color-muted: #64748b;
+  --color-accent-400: #f7c948;
+  --color-accent-500: #f2a900;
+  --color-accent-600: #c88400;
+
+  --color-background: #fbfcff;
+  --color-surface: #f3f6fb;
+  --color-surface-2: #e8edf5;
+  --color-paper: #ffffff;
+  --color-border: #d9e0eb;
+  --color-ink: #101626;
+  --color-ink-soft: #344054;
+  --color-muted: #68758a;
 
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -31,6 +37,68 @@
   --radius-xl: 1rem;
 }
 
-html { -webkit-text-size-adjust: 100%; }
-body { font-family: var(--font-sans); background: var(--color-background); color: var(--color-ink); }
-::selection { background: var(--color-brand-200); }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background:
+    linear-gradient(90deg, rgba(16, 22, 38, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(16, 22, 38, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, #fbfcff 0%, #f7f9fd 42%, #ffffff 100%);
+  background-size: 32px 32px, 32px 32px, auto;
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-brand-200);
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  letter-spacing: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer components {
+  .shell {
+    width: min(1120px, calc(100% - 2rem));
+    margin-inline: auto;
+  }
+
+  .repro-card {
+    border: 1px solid color-mix(in srgb, var(--color-border) 84%, white);
+    background: color-mix(in srgb, var(--color-paper) 94%, var(--color-brand-50));
+    box-shadow: 0 18px 45px rgba(16, 22, 38, 0.07);
+  }
+
+  .repro-panel {
+    border: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(12px);
+  }
+
+  .repro-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand-200) 70%, white);
+    border-radius: 999px;
+    background: var(--color-brand-50);
+    padding: 0.35rem 0.7rem;
+    color: var(--color-brand-800);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}

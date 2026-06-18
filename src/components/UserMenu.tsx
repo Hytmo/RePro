@@ -17,8 +17,19 @@ export default function UserMenu({name, signOutLabel}: {name: string; signOutLab
 
   return (
     <div className="flex items-center gap-2">
-      <Link href="/account" className="hidden max-w-[10rem] truncate text-sm font-medium text-ink-soft transition hover:text-brand-700 sm:inline">{name}</Link>
-      <button onClick={signOut} disabled={busy} className="rounded-lg border border-border px-3 py-2 text-sm font-medium text-ink-soft transition hover:border-brand-400 disabled:opacity-60">{signOutLabel}</button>
+      <Link
+        href="/account"
+        className="hidden max-w-[10rem] truncate rounded-full bg-surface px-3 py-2 text-sm font-bold text-ink-soft transition hover:bg-brand-50 hover:text-brand-700 sm:inline"
+      >
+        {name}
+      </Link>
+      <button
+        onClick={signOut}
+        disabled={busy}
+        className="rounded-full border border-border bg-white px-3 py-2 text-sm font-bold text-ink-soft transition hover:border-brand-300 disabled:opacity-60"
+      >
+        {signOutLabel}
+      </button>
     </div>
   );
 }

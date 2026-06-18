@@ -64,22 +64,22 @@ export default function AuthForm({
   }
 
   const input =
-    'w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm outline-none focus:ring-2 focus:ring-brand-500';
+    'w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm outline-none transition placeholder:text-muted focus:ring-2 focus:ring-brand-300';
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       {mode === 'signup' && (
         <div>
-          <label className="mb-1 block text-sm font-medium text-ink-soft">{labels.displayName}</label>
+          <label className="mb-1 block text-sm font-bold text-ink-soft">{labels.displayName}</label>
           <input className={input} value={name} onChange={(e) => setName(e.target.value)} required />
         </div>
       )}
       <div>
-        <label className="mb-1 block text-sm font-medium text-ink-soft">{labels.email}</label>
+        <label className="mb-1 block text-sm font-bold text-ink-soft">{labels.email}</label>
         <input type="email" autoComplete="email" className={input} value={email} onChange={(e) => setEmail(e.target.value)} required />
       </div>
       <div>
-        <label className="mb-1 block text-sm font-medium text-ink-soft">{labels.password}</label>
+        <label className="mb-1 block text-sm font-bold text-ink-soft">{labels.password}</label>
         <input type="password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} minLength={6} className={input} value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
 
@@ -89,14 +89,14 @@ export default function AuthForm({
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-60"
+        className="w-full rounded-full bg-ink px-4 py-3 text-sm font-black text-white transition hover:bg-brand-700 disabled:opacity-60"
       >
         {labels.submit}
       </button>
 
       <p className="text-center text-sm text-muted">
         {labels.switchPrompt}{' '}
-        <Link href={mode === 'signin' ? '/sign-up' : '/sign-in'} className="font-medium text-brand-700 hover:underline">
+        <Link href={mode === 'signin' ? '/sign-up' : '/sign-in'} className="font-bold text-brand-700 hover:underline">
           {labels.switchLink}
         </Link>
       </p>

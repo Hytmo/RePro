@@ -17,7 +17,7 @@ export default function CompanyMap({
       title={`Map: ${name}`}
       src={src}
       loading="lazy"
-      className="h-64 w-full rounded-xl border border-border"
+      className="h-64 w-full rounded-lg border border-border"
     />
   );
 }
