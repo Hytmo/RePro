@@ -2,6 +2,7 @@ import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
 import LocaleSwitcher from './LocaleSwitcher';
 import UserMenu from './UserMenu';
+import BrandSeal from './BrandSeal';
 import {createClient} from '@/lib/supabase/server';
 
 export default async function Header() {
@@ -32,10 +33,7 @@ export default async function Header() {
           className="group flex min-w-0 items-center gap-3 text-ink"
           aria-label="RePro.lu"
         >
-          <span className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-md bg-ink font-black text-white">
-            <span className="absolute inset-x-0 top-0 h-1 bg-lux-500" />
-            R
-          </span>
+          <BrandSeal className="h-10 w-10 shrink-0 text-brand-600 transition-transform group-hover:scale-105" />
           <span className="hidden leading-none min-[440px]:block">
             <span className="block text-lg font-black tracking-tight">
               RePro<span className="text-brand-600">.lu</span>

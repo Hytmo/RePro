@@ -1,5 +1,6 @@
 import {getTranslations} from 'next-intl/server';
 import {Link} from '@/i18n/navigation';
+import BrandSeal from './BrandSeal';
 
 export default async function Footer() {
   const t = await getTranslations('footer');
@@ -11,10 +12,7 @@ export default async function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_0.8fr_0.8fr]">
           <div>
             <div className="flex items-center gap-3">
-              <span className="relative inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-md bg-white font-black text-ink">
-                <span className="absolute inset-x-0 top-0 h-1 bg-lux-500" />
-                R
-              </span>
+              <BrandSeal className="h-10 w-10 shrink-0 text-brand-500" />
               <div>
                 <div className="text-xl font-black tracking-tight">
                   RePro<span className="text-brand-300">.lu</span>
