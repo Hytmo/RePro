@@ -42,7 +42,7 @@ export default function SearchBar({
   return (
     <form
       onSubmit={submit}
-      className={`repro-card mx-auto grid w-full max-w-3xl gap-2 rounded-lg p-2 sm:grid-cols-[1.35fr_0.9fr_auto] ${
+      className={`repro-card grid w-full gap-2 rounded-lg p-2 sm:grid-cols-[1.35fr_0.9fr_auto] ${
         compact ? '' : 'shadow-2xl shadow-brand-900/10'
       }`}
     >

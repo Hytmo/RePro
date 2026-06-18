@@ -18,69 +18,71 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
   return (
     <>
       <section className="border-b border-border bg-background">
-        <div className="shell grid gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:py-20">
-          <div className="min-w-0">
-            <span className="repro-kicker">
-              <span className="h-2 w-2 rounded-full bg-mint-500" />
-              {t('kicker')}
-            </span>
-            <h1 className="mt-5 max-w-3xl text-[clamp(2.35rem,6vw,4.8rem)] font-black leading-[0.96] tracking-tight text-ink">
-              {t('heroTitle')}
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft">
-              {t('heroSubtitle')}
-            </p>
-            <div className="mt-8">
-              <SearchBar
-                placeholder={t('searchPlaceholder')}
-                locationPlaceholder={t('searchLocationPlaceholder')}
-                buttonLabel={t('searchButton')}
-                serviceLabel={t('serviceLabel')}
-                locationLabel={t('locationLabel')}
-              />
-            </div>
-          </div>
+        <div className="shell py-12 lg:py-16">
+          {/* Full-width search, sitting beneath the header with margin */}
+          <SearchBar
+            placeholder={t('searchPlaceholder')}
+            locationPlaceholder={t('searchLocationPlaceholder')}
+            buttonLabel={t('searchButton')}
+            serviceLabel={t('serviceLabel')}
+            locationLabel={t('locationLabel')}
+          />
 
-          <div className="repro-panel min-w-0 rounded-lg p-5">
-            <div className="flex items-center justify-between border-b border-border pb-4">
-              <div>
-                <p className="text-xs font-bold uppercase text-muted">{t('snapshotLabel')}</p>
-                <p className="mt-1 text-lg font-black text-ink">{t('snapshotTitle')}</p>
+          <div className="mt-12 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div className="min-w-0">
+              <span className="repro-kicker">
+                <span className="h-2 w-2 rounded-full bg-mint-500" />
+                {t('kicker')}
+              </span>
+              <h1 className="mt-5 max-w-3xl text-[clamp(2.35rem,6vw,4.8rem)] font-black leading-[0.96] tracking-tight text-ink">
+                {t('heroTitle')}
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-soft">
+                {t('heroSubtitle')}
+              </p>
+            </div>
+
+            <div className="repro-panel min-w-0 rounded-lg p-5">
+              <div className="flex items-center justify-between border-b border-border pb-4">
+                <div>
+                  <p className="text-xs font-bold uppercase text-muted">{t('snapshotLabel')}</p>
+                  <p className="mt-1 text-lg font-black text-ink">{t('snapshotTitle')}</p>
+                </div>
+                <div className="rounded-full bg-ink px-3 py-1 text-xs font-bold text-white">
+                  {t('liveMvp')}
+                </div>
               </div>
-              <div className="rounded-full bg-ink px-3 py-1 text-xs font-bold text-white">
-                {t('liveMvp')}
+
+              <div className="grid gap-3 py-5 sm:grid-cols-3">
+                <Metric value={featured.length.toString()} label={t('topMatches')} />
+                <Metric value={reviewCount.toString()} label={t('sampleReviews')} />
+                <Metric value="0" label={t('paidRankBoosts')} />
               </div>
-            </div>
 
-            <div className="grid gap-3 py-5 sm:grid-cols-3">
-              <Metric value={featured.length.toString()} label={t('topMatches')} />
-              <Metric value={reviewCount.toString()} label={t('sampleReviews')} />
-              <Metric value="0" label={t('paidRankBoosts')} />
-            </div>
-
-            <div className="space-y-3">
-              {featured.map((company: any, index: number) => (
-                <Link
-                  key={company.id}
-                  href={`/company/${company.slug}`}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-border bg-white px-4 py-3 transition hover:border-brand-300"
-                >
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-50 text-xs font-black text-brand-700">
-                        {index + 1}
-                      </span>
-                      <p className="truncate font-bold text-ink">{company.name}</p>
+              <div className="space-y-3">
+                {featured.map((company: any, index: number) => (
+                  <Link
+                    key={company.id}
+                    href={`/company/${company.slug}`}
+                    className="flex items-center justify-between gap-3 rounded-lg border border-border bg-white px-4 py-3 transition hover:border-brand-300"
+                  >
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-50 text-xs font-black text-brand-700">
+                          {index + 1}
+                        </span>
+                        <p className="truncate font-bold text-ink">{company.name}</p>
+                      </div>
+                      <p className="mt-1 truncate text-xs text-muted">
+                        {company.city} - {t('reviewCount', {count: Number(company.rating_count)})}
+                      </p>
                     </div>
-                    <p className="mt-1 truncate text-xs text-muted">
-                      {company.city} - {t('reviewCount', {count: Number(company.rating_count)})}
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-accent-400/20 px-2.5 py-1 text-xs font-black text-ink">
-                    {Number(company.rating_avg).toFixed(1)}
-                  </span>
-                </Link>
-              ))}
+                    <span className="rounded-full bg-accent-400/20 px-2.5 py-1 text-xs font-black text-ink">
+                      {Number(company.rating_avg).toFixed(1)}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
