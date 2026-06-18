@@ -1,44 +1,41 @@
 import type {LucideIcon} from 'lucide-react';
 import {
-  BriefcaseBusiness,
   Building2,
+  Calculator,
   Car,
-  GraduationCap,
-  Hammer,
+  Droplet,
   Home,
   Laptop,
-  Leaf,
   Paintbrush,
-  Plug,
-  Scale,
+  Ruler,
   Scissors,
-  Sparkles,
+  Sprout,
+  SprayCan,
   Store,
-  Stethoscope,
-  Utensils,
-  Wrench
+  Thermometer,
+  Truck,
+  UtensilsCrossed,
+  Zap
 } from 'lucide-react';
 
+// Maps the category `icon` field (Tabler-style names stored in the DB) to a
+// distinct Lucide icon per trade.
 const ICONS: Record<string, LucideIcon> = {
-  'ti-building-store': Store,
-  'ti-building': Building2,
-  'ti-briefcase': BriefcaseBusiness,
-  'ti-car': Car,
-  'ti-cut': Scissors,
-  'ti-hammer': Hammer,
-  'ti-home': Home,
-  'ti-leaf': Leaf,
-  'ti-paint': Paintbrush,
-  'ti-paintbrush': Paintbrush,
-  'ti-plug': Plug,
-  'ti-scale': Scale,
-  'ti-school': GraduationCap,
-  'ti-sparkles': Sparkles,
-  'ti-stethoscope': Stethoscope,
-  'ti-tools': Wrench,
-  'ti-tool': Wrench,
-  'ti-utensils': Utensils,
-  'ti-device-laptop': Laptop
+  'ti-droplet': Droplet,                  // plumbers
+  'ti-bolt': Zap,                         // electricians
+  'ti-home-2': Home,                      // roofers
+  'ti-brush': Paintbrush,                 // painters
+  'ti-car': Car,                          // garages & auto
+  'ti-scissors': Scissors,                // hairdressers
+  'ti-tools-kitchen-2': UtensilsCrossed,  // restaurants
+  'ti-spray': SprayCan,                   // cleaning
+  'ti-truck': Truck,                      // movers
+  'ti-ruler-2': Ruler,                    // architects
+  'ti-calculator': Calculator,            // accountants
+  'ti-plant-2': Sprout,                   // gardeners
+  'ti-temperature': Thermometer,          // heating & HVAC
+  'ti-device-laptop': Laptop,             // IT services
+  'ti-building-store': Store
 };
 
 export default function CategoryIcon({
