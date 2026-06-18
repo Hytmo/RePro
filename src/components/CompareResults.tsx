@@ -10,11 +10,13 @@ export default function CompareResults({
   companies,
   locale,
   badgeLabel,
+  noReviewsLabel = 'No reviews yet',
   labels
 }: {
   companies: any[];
   locale: string;
   badgeLabel: string;
+  noReviewsLabel?: string;
   labels: {select: string; compareCta: string; clear: string};
 }) {
   const router = useRouter();
@@ -72,11 +74,15 @@ export default function CompareResults({
                       {company.city ? ` - ${company.city}` : ''}
                     </p>
                     <div className="mt-3">
-                      <StarRating
-                        value={Number(company.rating_avg)}
-                        count={company.rating_count}
-                        showValue
-                      />
+                      {Number(company.rating_count) > 0 ? (
+                        <StarRating
+                          value={Number(company.rating_avg)}
+                          count={company.rating_count}
+                          showValue
+                        />
+                      ) : (
+                        <span className="text-xs font-semibold text-muted">{noReviewsLabel}</span>
+                      )}
                     </div>
                   </div>
                 </div>

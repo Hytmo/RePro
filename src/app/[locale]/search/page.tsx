@@ -1,5 +1,5 @@
 import {getTranslations, setRequestLocale} from 'next-intl/server';
-import {searchCompanies, getCategories, getCities} from '@/lib/queries';
+import {searchCompanies, getCategoryTree, getCities} from '@/lib/queries';
 import {localizedName} from '@/lib/format';
 import SearchFilters from '@/components/SearchFilters';
 import CompareResults from '@/components/CompareResults';
@@ -18,12 +18,20 @@ export default async function SearchPage({
   const tc = await getTranslations('company');
   const tcmp = await getTranslations('compare');
 
-  const [categories, cities, results] = await Promise.all([
-    getCategories(),
+  const [tree, cities, results] = await Promise.all([
+    getCategoryTree(),
     getCities(),
     searchCompanies({q: sp.q, category: sp.category, city: sp.city, minRating: sp.minRating ? Number(sp.minRating) : undefined, badgedOnly: sp.badged === '1', sort: sp.sort})
   ]);
-  const catOptions = categories.map((c: any) => ({slug: c.slug, label: localizedName(c.name, locale)}));
+  const groups = tree.map((s: any) => {
+    const label = localizedName(s.name, locale);
+    return {
+      slug: s.slug,
+      label,
+      allLabel: t('sectorAll', {name: label}),
+      children: s.children.map((c: any) => ({slug: c.slug, label: localizedName(c.name, locale)}))
+    };
+  });
 
   return (
     <div className="shell py-10">
@@ -44,7 +52,7 @@ export default async function SearchPage({
 
       <div className="mt-6">
         <SearchFilters
-          categories={catOptions}
+          groups={groups}
           cities={cities}
           labels={{category: t('category'), allCategories: t('allCategories'), city: t('city'), allCities: t('allCities'), minRating: t('minRating'), any: t('any'), badgedOnly: t('badgedOnly'), sortBy: t('sortBy'), relevance: t('relevance'), rating: t('rating'), reviews: t('reviews'), newest: t('newest')}}
         />
@@ -57,7 +65,7 @@ export default async function SearchPage({
         </div>
       ) : (
         <div className="mt-6">
-          <CompareResults companies={results} locale={locale} badgeLabel={tc('verified')} labels={{select: tcmp('select'), compareCta: tcmp('compareCta'), clear: tcmp('clear')}} />
+          <CompareResults companies={results} locale={locale} badgeLabel={tc('verified')} noReviewsLabel={tc('noReviewsYet')} labels={{select: tcmp('select'), compareCta: tcmp('compareCta'), clear: tcmp('clear')}} />
         </div>
       )}
     </div>

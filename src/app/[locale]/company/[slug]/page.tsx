@@ -98,12 +98,19 @@ export default async function CompanyPage({params}: {params: Promise<{locale: st
             {company.is_badged && <VerifiedBadge label={t('verified')} />}
           </div>
           <div className="mt-2 flex flex-wrap items-center gap-3">
-            <StarRating value={Number(company.rating_avg)} count={company.rating_count} size={20} showValue />
-            {company.rating_count > 0 && <span className="text-sm text-muted">- {t('recommend', {pct: Math.round(Number(company.recommend_pct))})}</span>}
+            {company.rating_count > 0 ? (
+              <>
+                <StarRating value={Number(company.rating_avg)} count={company.rating_count} size={20} showValue />
+                <span className="text-sm text-muted">- {t('recommend', {pct: Math.round(Number(company.recommend_pct))})}</span>
+              </>
+            ) : (
+              <span className="rounded-full bg-surface px-3 py-1 text-xs font-semibold text-muted">{t('noReviewsYet')}</span>
+            )}
           </div>
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {cats.map((c: any) => (<Link key={c.slug} href={`/category/${c.slug}`} className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft hover:text-brand-700">{localizedName(c.name, locale)}</Link>))}
             {company.city && <span className="rounded-full bg-surface-2 px-3 py-1 text-xs font-medium text-ink-soft">{company.city}</span>}
+            {!company.owner_id && <span className="rounded-full border border-dashed border-border px-3 py-1 text-xs font-medium text-muted">{t('unclaimed')}</span>}
             {!company.owner_id && !isOwner && (<ClaimButton companyId={company.id} userId={user?.id ?? null} signedIn={!!user} alreadyClaimed={myClaimPending} labels={{claim: t('claim'), pending: t('claimPending')}} />)}
           </div>
         </div>

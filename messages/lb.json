@@ -47,7 +47,8 @@
       "multiText": "Vergläich no Qualitéit, Präis-Leeschtung, Kommunikatioun a Pénktlechkeet — net nëmmen ee Stär.",
       "transparentTitle": "Transparent Klassement",
       "transparentText": "Kee Bezuele fir besser ze ranken. Bezuele bréngt e Badge a Featuren, ni eng besser Bewäertung."
-    }
+    },
+    "servicesCount": "{count, plural, =1 {1 Service} other {# Servicer}}"
   },
   "footer": {
     "tagline": "Éierlech Bewäertunge vu Lëtzebuerger Betriber.",
@@ -79,7 +80,8 @@
     "rating": "Bescht bewäert",
     "reviews": "Meescht Bewäertungen",
     "newest": "Nei",
-    "noPaidRanking": "Kee bezuelte Ranking"
+    "noPaidRanking": "Kee bezuelte Ranking",
+    "sectorAll": "Alleguer: {name}"
   },
   "company": {
     "verified": "Verifizéiert",
@@ -109,7 +111,9 @@
       "sun": "Sonndeg"
     },
     "claim": "Dëse Betrib beanspruchen",
-    "claimPending": "Ufro am Gaang"
+    "claimPending": "Ufro am Gaang",
+    "noReviewsYet": "Nach keng Bewäertungen",
+    "unclaimed": "Net beusprucht"
   },
   "reviews": {
     "anonymous": "Anonym",
@@ -126,7 +130,8 @@
     "kicker": "Servicer",
     "title": "Kategorien duerchsichen",
     "subtitle": "Fann de richtege Service fir d'Aarbecht.",
-    "count": "{count, plural, =1 {1 Kategorie} other {# Kategorien}}"
+    "count": "{count, plural, =1 {1 Kategorie} other {# Kategorien}}",
+    "viewAll": "Alles weisen"
   },
   "auth": {
     "kicker": "Kont",

@@ -47,7 +47,8 @@
       "multiText": "Comparez sur la qualité, le rapport qualité-prix, la communication et la ponctualité — pas une seule étoile.",
       "transparentTitle": "Classement transparent",
       "transparentText": "Pas de classement payant. Payer offre un badge et des fonctionnalités, jamais une meilleure note."
-    }
+    },
+    "servicesCount": "{count, plural, =1 {1 service} other {# services}}"
   },
   "footer": {
     "tagline": "Avis honnêtes sur les entreprises luxembourgeoises.",
@@ -79,7 +80,8 @@
     "rating": "Mieux notées",
     "reviews": "Plus d'avis",
     "newest": "Plus récentes",
-    "noPaidRanking": "Pas de classement payant"
+    "noPaidRanking": "Pas de classement payant",
+    "sectorAll": "Tout : {name}"
   },
   "company": {
     "verified": "Vérifié",
@@ -109,7 +111,9 @@
       "sun": "Dimanche"
     },
     "claim": "Revendiquer cette entreprise",
-    "claimPending": "Revendication en attente"
+    "claimPending": "Revendication en attente",
+    "noReviewsYet": "Pas encore d’avis",
+    "unclaimed": "Non revendiqué"
   },
   "reviews": {
     "anonymous": "Anonyme",
@@ -126,7 +130,8 @@
     "kicker": "Services",
     "title": "Parcourir les catégories",
     "subtitle": "Trouvez le bon service pour le travail.",
-    "count": "{count, plural, =1 {1 catégorie} other {# catégories}}"
+    "count": "{count, plural, =1 {1 catégorie} other {# catégories}}",
+    "viewAll": "Tout voir"
   },
   "auth": {
     "kicker": "Compte",

@@ -47,7 +47,8 @@
       "multiText": "Compare on quality, value, communication and punctuality — not just one star.",
       "transparentTitle": "Transparent ranking",
       "transparentText": "No pay-to-rank. Paying buys a badge and features, never a higher rating."
-    }
+    },
+    "servicesCount": "{count, plural, =1 {1 service} other {# services}}"
   },
   "footer": {
     "tagline": "Honest reviews of Luxembourg businesses.",
@@ -79,7 +80,8 @@
     "rating": "Highest rated",
     "reviews": "Most reviewed",
     "newest": "Newest",
-    "noPaidRanking": "No paid ranking"
+    "noPaidRanking": "No paid ranking",
+    "sectorAll": "All {name}"
   },
   "company": {
     "verified": "Verified",
@@ -109,7 +111,9 @@
       "sun": "Sunday"
     },
     "claim": "Claim this business",
-    "claimPending": "Claim pending"
+    "claimPending": "Claim pending",
+    "noReviewsYet": "No reviews yet",
+    "unclaimed": "Unclaimed"
   },
   "reviews": {
     "anonymous": "Anonymous",
@@ -126,7 +130,8 @@
     "kicker": "Services",
     "title": "Browse categories",
     "subtitle": "Find the right service for the job.",
-    "count": "{count, plural, =1 {1 category} other {# categories}}"
+    "count": "{count, plural, =1 {1 category} other {# categories}}",
+    "viewAll": "View all"
   },
   "auth": {
     "kicker": "Account",

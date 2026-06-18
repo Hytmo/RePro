@@ -4,13 +4,14 @@ import {useRouter} from '@/i18n/navigation';
 import {useSearchParams} from 'next/navigation';
 
 type Cat = {slug: string; label: string};
+type Group = {slug: string; label: string; allLabel: string; children: Cat[]};
 
 export default function SearchFilters({
-  categories,
+  groups,
   cities,
   labels
 }: {
-  categories: Cat[];
+  groups: Group[];
   cities: string[];
   labels: {
     category: string;
@@ -50,10 +51,15 @@ export default function SearchFilters({
             onChange={(e) => update('category', e.target.value)}
           >
             <option value="">{labels.allCategories}</option>
-            {categories.map((c) => (
-              <option key={c.slug} value={c.slug}>
-                {c.label}
-              </option>
+            {groups.map((g) => (
+              <optgroup key={g.slug} label={g.label}>
+                <option value={g.slug}>{g.allLabel}</option>
+                {g.children.map((c) => (
+                  <option key={c.slug} value={c.slug}>
+                    {c.label}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </Filter>

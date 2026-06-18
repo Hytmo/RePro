@@ -7,16 +7,19 @@ import {localizedName, initials} from '@/lib/format';
 export default function CompanyCard({
   company,
   locale,
-  badgeLabel
+  badgeLabel,
+  noReviewsLabel = 'No reviews yet'
 }: {
   company: any;
   locale: string;
   badgeLabel: string;
+  noReviewsLabel?: string;
 }) {
   const cats = (company.company_categories ?? [])
     .map((cc: any) => cc.categories)
     .filter(Boolean);
   const topCat = cats[0];
+  const hasReviews = Number(company.rating_count) > 0;
 
   return (
     <Link
@@ -49,10 +52,18 @@ export default function CompanyCard({
           </div>
 
           <div className="mt-4 flex items-center justify-between gap-3">
-            <StarRating value={Number(company.rating_avg)} count={company.rating_count} showValue />
-            <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-bold text-ink-soft">
-              {Math.round(Number(company.recommend_pct ?? 0))}% rec.
-            </span>
+            {hasReviews ? (
+              <>
+                <StarRating value={Number(company.rating_avg)} count={company.rating_count} showValue />
+                <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-bold text-ink-soft">
+                  {Math.round(Number(company.recommend_pct ?? 0))}% rec.
+                </span>
+              </>
+            ) : (
+              <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-muted">
+                {noReviewsLabel}
+              </span>
+            )}
           </div>
         </div>
       </div>

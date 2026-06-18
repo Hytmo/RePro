@@ -47,7 +47,8 @@
       "multiText": "Vergleichen Sie nach Qualität, Preis-Leistung, Kommunikation und Pünktlichkeit — nicht nur ein Stern.",
       "transparentTitle": "Transparentes Ranking",
       "transparentText": "Kein Pay-to-Rank. Bezahlen bringt ein Abzeichen und Funktionen, niemals eine bessere Bewertung."
-    }
+    },
+    "servicesCount": "{count, plural, =1 {1 Dienst} other {# Dienste}}"
   },
   "footer": {
     "tagline": "Ehrliche Bewertungen von Luxemburger Unternehmen.",
@@ -79,7 +80,8 @@
     "rating": "Beste Bewertung",
     "reviews": "Meiste Bewertungen",
     "newest": "Neueste",
-    "noPaidRanking": "Kein bezahltes Ranking"
+    "noPaidRanking": "Kein bezahltes Ranking",
+    "sectorAll": "Alle: {name}"
   },
   "company": {
     "verified": "Verifiziert",
@@ -109,7 +111,9 @@
       "sun": "Sonntag"
     },
     "claim": "Dieses Unternehmen beanspruchen",
-    "claimPending": "Anspruch ausstehend"
+    "claimPending": "Anspruch ausstehend",
+    "noReviewsYet": "Noch keine Bewertungen",
+    "unclaimed": "Nicht beansprucht"
   },
   "reviews": {
     "anonymous": "Anonym",
@@ -126,7 +130,8 @@
     "kicker": "Services",
     "title": "Kategorien durchsuchen",
     "subtitle": "Finden Sie den richtigen Service für die Aufgabe.",
-    "count": "{count, plural, =1 {1 Kategorie} other {# Kategorien}}"
+    "count": "{count, plural, =1 {1 Kategorie} other {# Kategorien}}",
+    "viewAll": "Alle anzeigen"
   },
   "auth": {
     "kicker": "Konto",

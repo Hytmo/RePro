@@ -3,7 +3,7 @@ import {Link} from '@/i18n/navigation';
 import SearchBar from '@/components/SearchBar';
 import CompanyCard from '@/components/CompanyCard';
 import CategoryIcon from '@/components/CategoryIcon';
-import {getCategories, searchCompanies} from '@/lib/queries';
+import {getCategoryTree, searchCompanies} from '@/lib/queries';
 import {localizedName} from '@/lib/format';
 
 export default async function HomePage({params}: {params: Promise<{locale: string}>}) {
@@ -11,7 +11,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
   setRequestLocale(locale);
   const t = await getTranslations('home');
   const tc = await getTranslations('company');
-  const categories = (await getCategories()).slice(0, 10);
+  const sectors = await getCategoryTree();
   const featured = (await searchCompanies({sort: 'rating'})).slice(0, 3);
   const reviewCount = featured.reduce((sum: number, c: any) => sum + Number(c.rating_count ?? 0), 0);
 
@@ -102,10 +102,10 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {categories.map((c: any) => (
+          {sectors.map((c: any) => (
             <Link
               key={c.slug}
-              href={`/search?category=${c.slug}`}
+              href={`/category/${c.slug}`}
               className="group rounded-lg border border-border bg-white p-4 transition hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-brand-900/5"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-md bg-surface text-brand-700 transition group-hover:bg-brand-50">
@@ -113,6 +113,9 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
               </span>
               <span className="mt-4 block text-sm font-black text-ink">
                 {localizedName(c.name, locale)}
+              </span>
+              <span className="mt-1 block text-xs font-medium text-muted">
+                {t('servicesCount', {count: c.children.length})}
               </span>
             </Link>
           ))}
@@ -144,6 +147,7 @@ export default async function HomePage({params}: {params: Promise<{locale: strin
               company={company}
               locale={locale}
               badgeLabel={tc('verified')}
+              noReviewsLabel={tc('noReviewsYet')}
             />
           ))}
         </div>
